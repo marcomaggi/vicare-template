@@ -70,7 +70,9 @@ dnl VICARE_CONSTANT_TESTS([XML_TRUE XML_FALSE])
 #### finish
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile tests/Makefile lib/Makefile lib/vicare/template/constants.sls])
+AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile tests/Makefile lib/Makefile
+                 lib/vicare/template/constants.sls
+                 meta/slackware/doinst.sh])
 AC_OUTPUT
 
 ### end of file

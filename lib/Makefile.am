@@ -3,12 +3,18 @@
 libvicaredir	= $(libdir)/scheme
 
 EXTRA_DIST	=			\
-	compile-all.sps			\
 	vicare/template/constants.sls.in
+
+dist_pkglibexec_SCRIPTS		= compile-all.sps
 
 nobase_dist_libvicare_DATA =		\
 	vicare/template.sls		\
 	vicare/template/constants.sls
+
+# if WANT_NAUSICAA
+# dist_pkglibexec_SCRIPTS		+= compile-nausicaa.sps
+# nobase_dist_libvicare_DATA	+= nausicaa/xml/template.vicare.sls
+# endif
 
 ## --------------------------------------------------------------------
 
