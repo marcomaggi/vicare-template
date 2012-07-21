@@ -5,8 +5,11 @@ AC_INCLUDES_DEFAULT
 #ifdef HAVE_VICARE_H
 #  include <vicare.h>
 #endif
-#ifdef HAVE_TEMPLATE_H
-#  include <template.h>
+#ifdef HAVE_SQLITE3_H
+#  include <sqlite3.h>
+#endif
+#ifdef HAVE_SQLITE3EXT_H
+#  include <sqlite3ext.h>
 #endif
 ])
 
@@ -25,6 +28,11 @@ AC_DEFUN([VICARE_VALUEOF_TEST],[
 AC_DEFUN([VICARE_CONSTANT_TEST],[VICARE_VALUEOF_TEST([$1],[$1])])
 AC_DEFUN([VICARE_CONSTANT_TESTS],[m4_map_args_w($1,[VICARE_CONSTANT_TEST(],[)])])
 
+AC_DEFUN([VICARE_CONSTANT_FALSE],
+  [VALUEOF_$1="#f"
+   AC_SUBST([VALUEOF_$1])])
+AC_DEFUN([VICARE_CONSTANT_FALSES],[m4_map_args_w($1,[VICARE_CONSTANT_FALSE(],[)])])
+
 dnl page
 AC_DEFUN([VICARE_STRINGOF_TEST],
   [VALUEOF_$1=""
@@ -38,7 +46,8 @@ AC_DEFUN([VICARE_STRINGOF_TEST],
            return ferror (f) || fclose (f) != 0;
         }])],
         [vicare_cv_stringof_$1=`cat conftest.val`],
-        [vicare_cv_stringof_$1=""])
+        [vicare_cv_stringof_$1=""],
+	[vicare_cv_stringof_$1=""])
       rm -f conftest.val])
    VALUEOF_$1="$vicare_cv_stringof_$1"
    AC_SUBST([VALUEOF_$1])])
@@ -59,7 +68,8 @@ AC_DEFUN([VICARE_DOUBLEOF_TEST],
            return ferror (f) || fclose (f) != 0;
         }])],
         [vicare_cv_doubleof_$1=`cat conftest.val`],
-        [vicare_cv_doubleof_$1=""])
+        [vicare_cv_doubleof_$1=""],
+	[vicare_cv_doubleof_$1="0.0"])
       rm -f conftest.val])
    VALUEOF_$1="$vicare_cv_doubleof_$1"
    AC_SUBST([VALUEOF_$1])])

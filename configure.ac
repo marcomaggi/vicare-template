@@ -5,16 +5,14 @@ AC_PREREQ([2.68])
 AC_INIT([Vicare/Template],[0.1d0],[marco.maggi-ipsu@poste.it],
   [vicare-template],[http://marcomaggi.github.com/vicare.html])
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([-Wall])
+dnl AM_MAINTAINER_MODE
 AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_MACRO_DIR([m4])
-dnl AM_MAINTAINER_MODE
 AC_CANONICAL_HOST
 
 #page
 #### compiler
-
-AM_INIT_AUTOMAKE([-Wall])
 
 AC_PROG_CC
 AC_PROG_CC_C_O
@@ -24,8 +22,11 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
 
-LT_PREREQ([2.2])
+LT_PREREQ([2.4])
 LT_INIT([shared disable-static])
+
+dnl AC_LANG([C])
+dnl AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 
 #page
 #### vicare configuration
@@ -70,9 +71,13 @@ dnl VICARE_CONSTANT_TESTS([XML_TRUE XML_FALSE])
 #### finish
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_FILES([Makefile src/Makefile doc/Makefile tests/Makefile lib/Makefile
-                 lib/vicare/template/constants.sls
-                 meta/slackware/doinst.sh])
+AC_CONFIG_FILES([Makefile]
+        [src/Makefile]
+        [doc/Makefile]
+        [tests/Makefile]
+        [lib/Makefile]
+        [lib/vicare/template/constants.sls]
+        [meta/slackware/doinst.sh])
 AC_OUTPUT
 
 ### end of file
