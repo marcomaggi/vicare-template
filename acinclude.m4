@@ -5,11 +5,8 @@ AC_INCLUDES_DEFAULT
 #ifdef HAVE_VICARE_H
 #  include <vicare.h>
 #endif
-#ifdef HAVE_SQLITE3_H
-#  include <sqlite3.h>
-#endif
-#ifdef HAVE_SQLITE3EXT_H
-#  include <sqlite3ext.h>
+#ifdef HAVE_TEMPLATE_H
+#  include <template.h>
 #endif
 ])
 
