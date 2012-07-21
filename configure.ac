@@ -64,6 +64,16 @@ AC_SUBST([vicare_template_VERSION_INTERFACE_AGE])
 #page
 #### symbols
 
+m4_define([VICARE_INCLUDES],[
+AC_INCLUDES_DEFAULT
+#ifdef HAVE_VICARE_H
+#  include <vicare.h>
+#endif
+#ifdef HAVE_TEMPLATE_H
+#  include <template.h>
+#endif
+])
+
 dnl Stuff
 dnl VICARE_CONSTANT_TESTS([XML_TRUE XML_FALSE])
 
