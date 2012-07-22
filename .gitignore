@@ -7,7 +7,6 @@
 *.gz
 *.html
 *.info
-*.info-*
 *.o
 *.out
 *.so
@@ -24,6 +23,7 @@ Makefile
 Makefile.in
 aclocal.m4
 autom4te*
+ar-lib
 compile
 config.guess
 config.h.in
@@ -41,4 +41,3 @@ mkinstalldirs
 ltmain.sh
 scheme/last-revision
 m4/
-
