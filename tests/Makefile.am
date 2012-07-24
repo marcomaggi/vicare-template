@@ -35,7 +35,7 @@ VICARE_INST_FLAGS	= --print-loaded-libraries $(user_flags)
 VICARE_INST_RUN		= $(VICARE_INST_ENV) $(VICARE) $(VICARE_INST_FLAGS)
 
 # TESTS and TESTS_ENVIRONMENT are Automake variables.
-TESTS_ENVIRONMENT	= $(VICARE_RUN)
+TESTS_ENVIRONMENT	= VICARE_CHECK_QUIET=yes $(VICARE_RUN)
 TESTS			=	\
 	test-vicare-template.sps
 
