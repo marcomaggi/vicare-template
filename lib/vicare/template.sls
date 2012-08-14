@@ -50,11 +50,11 @@
   (assertion-violation who "expected fixnum as argument" obj))
 
 #;(define-argument-validation (pointer who obj)
-  (ffi.pointer? obj)
+  (pointer? obj)
   (assertion-violation who "expected pointer as argument" obj))
 
 #;(define-argument-validation (callback who obj)
-  (ffi.pointer? obj)
+  (pointer? obj)
   (assertion-violation who "expected callback as argument" obj))
 
 #;(define-argument-validation (bytevector who obj)
