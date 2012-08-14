@@ -5,21 +5,20 @@ VICARE_SELECTED_TESTS	= $(testdir)/test-*$(file)*.sps
 VICARE_SELECTED_PROOFS	= $(testdir)/proof-*$(file)*.sps
 
 VICARE_TEST_SEARCH_PATH	= $(srcdir):$(srcdir)/../lib:$(builddir)/../lib:$(VICARE_LIBRARY_PATH)
-
 VICARE_FASL_DIRECTORY	= $(builddir)/../lib/fasl
-# The variable "user_flags"  is for the user to be  set on the command
-# line of "make".
-VICARE_FLAGS		= $(user_flags)
-if WANT_DEBUG
-VICARE_FLAGS		+= --debug
-endif
+VICARE_TEST_FASL_PATH	= $(VICARE_FASL_DIRECTORY):$(VICARE_FASL_PATH)
 
 VICARE		= @VICARE@
-VICARE_FLAGS	= --debug $(user_flags)
-VICARE_ENV	= VICARE_LIBRARY_PATH=$(VICARE_TEST_SEARCH_PATH)		\
-		  VICARE_FASL_PATH=$(VICARE_FASL_DIRECTORY):$(VICARE_FASL_PATH)	\
-		  CHECK_TEST_NAME=$(name)					\
-		  VICARE_SRC_DIR=$(srcdir) VICARE_BUILDDIR=$(builddir)		\
+# The variable "user_flags"  is for the user to be  set on the command
+# line of "make", for example "user_flags=--print-loaded-libraries".
+VICARE_FLAGS	= $(user_flags)
+if WANT_DEBUG
+VICARE_FLAGS	+= --debug
+endif
+VICARE_ENV	= VICARE_LIBRARY_PATH=$(VICARE_TEST_SEARCH_PATH)	\
+		  VICARE_FASL_PATH=$(VICARE_TEST_FASL_PATH)		\
+		  CHECK_TEST_NAME=$(name)				\
+		  VICARE_SRC_DIR=$(srcdir) VICARE_BUILDDIR=$(builddir)	\
 		  LD_LIBRARY_PATH=$(builddir)/../src/.libs
 VICARE_RUN	= $(VICARE_ENV) $(GDB) $(VICARE) $(VICARE_FLAGS)
 
@@ -35,26 +34,29 @@ proof proofs:
 	@for f in $(VICARE_SELECTED_PROOFS); do $(VICARE_RUN) $$f; done
 	@echo
 
-### interface to "make check"
-
-VICARE_INST_ENV		= VICARE_LIBRARY_PATH=$(srcdir):$(builddir):$(VICARE_LIBRARY_PATH)
-VICARE_INST_FLAGS	= --print-loaded-libraries $(user_flags)
-VICARE_INST_RUN		= $(VICARE_INST_ENV) $(VICARE) $(VICARE_INST_FLAGS)
+## --------------------------------------------------------------------
+## interface to "make check"
 
 # TESTS and TESTS_ENVIRONMENT are Automake variables.
 TESTS_ENVIRONMENT	= VICARE_CHECK_QUIET=yes $(VICARE_RUN)
 TESTS			=	\
 	test-vicare-template.sps
 
-installcheck-local:
-	@for f in $(TESTS); do $(VICARE_INST_RUN) $(srcdir)/$$f; done
-
 EXTRA_DIST =	\
 	test-vicare-template.sps			\
 	\
 	proof-for-documentation.sps
 
+## --------------------------------------------------------------------
+## interface to "make installcheck"
+
+VICARE_INSTCHECK_FLAGS	= --print-loaded-libraries $(user_flags)
+VICARE_INSTCHECK_ENV	= VICARE_LIBRARY_PATH=$(VICARE_LIBRARY_PATH)	\
+			  VICARE_CHECK_QUIET=yes
+VICARE_INSTCHECK_RUN	= $(VICARE_INSTCHECK_ENV) $(VICARE) $(VICARE_INSTCHECK_FLAGS)
+
+installcheck-local:
+	@for f in $(TESTS); do $(VICARE_INSTCHECK_RUN) $(srcdir)/$$f; done
+
+
 ### end of file
-# Local Variables:
-# mode: makefile-gmake
-# End:

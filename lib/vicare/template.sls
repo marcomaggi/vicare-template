@@ -39,6 +39,7 @@
     )
   (import (vicare)
     (vicare template constants)
+    (prefix (vicare template unsafe-capi) capi.)
     (vicare syntactic-extensions)
     #;(prefix (vicare words) words.))
 
@@ -65,17 +66,17 @@
 
 ;;;; version functions
 
-(define-inline (vicare-template-version-interface-current)
-  (foreign-call "ikrt_template_version_interface_current"))
+(define (vicare-template-version-interface-current)
+  (capi.vicare-template-version-interface-current))
 
-(define-inline (vicare-template-version-interface-revision)
-  (foreign-call "ikrt_template_version_interface_revision"))
+(define (vicare-template-version-interface-revision)
+  (capi.vicare-template-version-interface-revision))
 
-(define-inline (vicare-template-version-interface-age)
-  (foreign-call "ikrt_template_version_interface_age"))
+(define (vicare-template-version-interface-age)
+  (capi.vicare-template-version-interface-age))
 
-(define-inline (vicare-template-version)
-  (ascii->string (foreign-call "ikrt_template_version")))
+(define (vicare-template-version)
+  (ascii->string (capi.vicare-template-version)))
 
 
 ;;;; done
