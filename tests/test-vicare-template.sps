@@ -33,7 +33,7 @@
   (vicare checks))
 
 (check-set-mode! 'report-failed)
-(display "*** testing Vicare Template bindings\n")
+(check-display "*** testing Vicare Template bindings\n")
 
 
 ;;;; helpers

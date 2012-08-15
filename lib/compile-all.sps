@@ -27,6 +27,7 @@
 #!r6rs
 (import
     (only (vicare template))
+  (only (vicare template features))
   )
 
 ;;; end of file
