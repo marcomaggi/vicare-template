@@ -23,7 +23,7 @@ AC_ARG_ENABLE([debug],
   fi],
   [VICARE_DEBUG=no
    AC_MSG_RESULT([no])])
-AM_CONDITIONAL([WANT_DEBUG],[test x$VICARE_DEBUG = xyes])
+AM_CONDITIONAL([WANT_VICARE_DEBUG],[test x$VICARE_DEBUG = xyes])
 
 #page
 #### compiler

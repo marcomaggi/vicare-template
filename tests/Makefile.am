@@ -11,7 +11,7 @@ VICARE_TEST_LD_PATH	= $(builddir)/../src/.libs:$(LD_LIBRARY_PATH)
 # The variable "user_flags"  is for the user to be  set on the command
 # line of "make", for example "user_flags=--print-loaded-libraries".
 VICARE_TEST_FLAGS	= $(user_flags)
-if WANT_DEBUG
+if WANT_VICARE_DEBUG
 VICARE_TEST_FLAGS	+= --debug
 endif
 VICARE_TEST_ENV		= VICARE_LIBRARY_PATH=$(VICARE_TEST_SEARCH_PATH)	\

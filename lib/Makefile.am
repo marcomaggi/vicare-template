@@ -34,7 +34,7 @@ VICARE		= @VICARE@
 # The variable "user_flags"  is for the user to be  set on the command
 # line of "make", for example "user_flags=--print-loaded-libraries".
 VICARE_COMPILE_FLAGS	= --fasl-directory $(VICARE_FASL_DIRECTORY) $(user_flags)
-if WANT_DEBUG
+if WANT_VICARE_DEBUG
 VICARE_COMPILE_FLAGS	+= --debug
 endif
 VICARE_COMPILE_ENV	= VICARE_LIBRARY_PATH=$(VICARE_COMPILE_LIBRARY_PATH)	\
