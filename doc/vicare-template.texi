@@ -190,8 +190,10 @@ script @file{compile-all.sps} can be executed to precompile the
 installed libraries; for example:
 
 @example
-$ sudo vicare --compile-dependencies \
-   /usr/local/libexec/vicare-template/compile-all.sps
+$ sudo vicare \
+   --fasl-directory /var/cache/vicare-scheme \
+   --compile-dependencies \
+      /usr/local/libexec/vicare-template/compile-all.sps
 @end example
 
 This document contains only a brief description of the functions: refer
