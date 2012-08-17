@@ -65,6 +65,11 @@ features_SOURCES	= features.c
 vicare/template/features.sls : features
 	./features >$@
 
+## --------------------------------------------------------------------
+
 CLEANFILES	= vicare/template/features.sls
+
+clean-local:
+	-rm -rf $(VICARE_FASL_DIRECTORY)
 
 ### end of file
