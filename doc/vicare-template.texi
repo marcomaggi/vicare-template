@@ -209,8 +209,8 @@ The installed C library follows version numbering as established by the
 @gnu{} Libtool @xref{Libtool versioning, interface, Libtool's versioning
 system, libtool, Shared library support for @gnu{}}.
 
-The following bindings are exported by the @library{vicare template}
-library.
+The following bindings are exported by the library @library{vicare
+template}.
 
 
 @defun vicare-template-version-interface-current
