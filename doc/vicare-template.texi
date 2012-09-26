@@ -160,12 +160,16 @@ The following Scheme libraries are installed:
 
 @table @library
 @item vicare template
+@cindex Library @library{vicare template}
+@cindex @library{vicare template}, library
 It exports one binding for each Template public function.  All the
 Scheme function names are directly derived from the C function names by
 replacing underscore characters @samp{_} with dash characters @samp{-};
 so @cfunc{template_doit} becomes @func{template-doit}.
 
 @item vicare template unsafe-capi
+@cindex Library @library{vicare template unsafe-capi}
+@cindex @library{vicare template unsafe-capi}, library
 It exports one syntax binding for each Template public function.  All
 the Scheme syntax names are directly derived from the C function names
 by replacing underscore characters @samp{_} with dash characters
@@ -176,10 +180,14 @@ functions in the @value{PACKAGE} library; they are not meant to be
 called in normal usage of the package.
 
 @item vicare template constants
+@cindex Library @library{vicare template constants}
+@cindex @library{vicare template constants}, library
 It exports one binding for each constant value defined in the C language
 header @file{template.h}.
 
 @item vicare template features
+@cindex Library @library{vicare template features}
+@cindex @library{vicare template features}, library
 It exports one identifier syntax binding for each @code{HAVE_} constant
 defined by the @command{configure} script, expanding to @true{} or
 @false{}.
