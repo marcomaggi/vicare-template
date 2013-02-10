@@ -97,7 +97,7 @@ from a proper release tarball.
 
   Libraries are installed under the directory:
 
-		 $(libdir)/vicare-template
+		  $(libdir)/vicare-scheme
 
   After  installation, the  makefile  rule "vfasl-installed"
 will  precompile the  libraries installed  in  the hierarchy

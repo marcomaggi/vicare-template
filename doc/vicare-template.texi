@@ -38,7 +38,7 @@
 
 @c To be used as @value{COPYRIGHT_YEARS} whenever we need to include the
 @c list of copyright years.
-@set COPYRIGHT_YEARS            2012
+@set COPYRIGHT_YEARS            2012, 2013
 
 
 @c page
@@ -192,6 +192,10 @@ It exports one identifier syntax binding for each @code{HAVE_} constant
 defined by the @command{configure} script, expanding to @true{} or
 @false{}.
 @end table
+
+Scheme libraries are installed under the directory:
+
+@center @file{$(libdir)/vicare-scheme}
 
 After installation, under the directory @code{$libexecdir/$PACKAGE}, a
 script @file{compile-all.sps} can be executed to precompile the
