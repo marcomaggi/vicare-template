@@ -14,11 +14,13 @@ VICARE_TEST_FLAGS	= $(user_flags)
 if WANT_VICARE_DEBUG
 VICARE_TEST_FLAGS	+= --debug
 endif
-VICARE_TEST_ENV		= VICARE_LIBRARY_PATH=$(VICARE_TEST_SEARCH_PATH)	\
-			  VICARE_FASL_PATH=$(VICARE_TEST_FASL_PATH)		\
-			  LD_LIBRARY_PATH=$(VICARE_TEST_LD_PATH)		\
-			  VICARE_SRC_DIR=$(srcdir) VICARE_BUILDDIR=$(builddir)	\
-			  CHECK_TEST_NAME=$(name)
+VICARE_TEST_ENV		= \
+	VICARE_LIBRARY_PATH=$(VICARE_TEST_SEARCH_PATH); export VICARE_LIBRARY_PATH;	\
+	VICARE_FASL_PATH=$(VICARE_TEST_FASL_PATH); export VICARE_FASL_PATH;		\
+	LD_LIBRARY_PATH=$(VICARE_TEST_LD_PATH); export LD_LIBRARY_PATH;			\
+	VICARE_SRC_DIR=$(srcdir); export VICARE_SRC_DIR					\
+	VICARE_BUILDDIR=$(builddir); export VICARE_BUILDDIR;				\
+	CHECK_TEST_NAME=$(name); export CHECK_TEST_NAME;
 VICARE_TEST_RUN		= $(VICARE_TEST_ENV) $(GDB) $(VICARE) $(VICARE_TEST_FLAGS)
 
 VICARE_SELECTED_TESTS	= $(testdir)/test-*$(file)*.sps
@@ -39,8 +41,15 @@ demo demos:
 ## --------------------------------------------------------------------
 ## interface to "make check"
 
-# TESTS and TESTS_ENVIRONMENT are Automake variables.
-TESTS_ENVIRONMENT	= VICARE_CHECK_QUIET=yes $(VICARE_TEST_RUN)
+# Read "Parallel Test Harness" in the documentation of GNU Automake to
+# understand how to use this interface for "make check".
+#
+# We must make sure that this ends with a semicolon!!!
+AM_TESTS_ENVIRONMENT	= VICARE_CHECK_QUIET=yes; export VICARE_CHECK_QUIET; $(VICARE_TEST_ENV)
+TEST_EXTENSIONS		= .sps
+SPS_LOG_COMPILER	= $(VICARE)
+AM_SPS_LOG_FLAGS	= $(user_flags)
+
 TESTS			= \
 	test-vicare-template.sps
 
