@@ -13,6 +13,9 @@ AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE([-Wall foreign dist-xz no-dist-gzip])
 AM_MAINTAINER_MODE
 
+#page
+#### options
+
 VICARE_DEBUG=no
 AC_MSG_CHECKING([whether debugging features are included in compiled Scheme libraries])
 AC_ARG_ENABLE([debug],
