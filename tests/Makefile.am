@@ -2,6 +2,7 @@
 
 VICARE			= @VICARE@
 testdir			= $(srcdir)
+libvicaredir		= $(libdir)/vicare-scheme
 VICARE_FASL_DIRECTORY	= $(builddir)/../lib/fasl
 
 VICARE_TEST_SEARCH_PATH	= $(srcdir):$(srcdir)/../lib:$(builddir)/../lib:$(VICARE_LIBRARY_PATH)
@@ -61,7 +62,7 @@ EXTRA_DIST = \
 ## --------------------------------------------------------------------
 ## interface to "make installcheck"
 
-VICARE_INSTCHECK_LIBDIR		= $(libdir)/scheme
+VICARE_INSTCHECK_LIBDIR		= $(libvicaredir)
 VICARE_INSTCHECK_SEARCH_PATH	= $(DESTDIR)$(VICARE_INSTCHECK_LIBDIR):$(VICARE_LIBRARY_PATH)
 VICARE_INSTCHECK_FASL_PATH	= $(VICARE_FASL_PATH)
 VICARE_INSTCHECK_LD_PATH	= $(DESTDIR)$(libdir):$(LD_LIBRARY_PATH)
@@ -69,8 +70,7 @@ VICARE_INSTCHECK_LD_PATH	= $(DESTDIR)$(libdir):$(LD_LIBRARY_PATH)
 VICARE_INSTCHECK_FLAGS	= --print-loaded-libraries $(user_flags)
 VICARE_INSTCHECK_ENV	= VICARE_LIBRARY_PATH=$(VICARE_INSTCHECK_SEARCH_PATH)	\
 			  VICARE_FASL_PATH=$(VICARE_INSTCHECK_FASL_PATH)	\
-			  LD_LIBRARY_PATH=$(VICARE_INSTCHECK_LD_PATH)		\
-			  VICARE_CHECK_QUIET=yes
+			  LD_LIBRARY_PATH=$(VICARE_INSTCHECK_LD_PATH)
 VICARE_INSTCHECK_RUN	= $(VICARE_INSTCHECK_ENV) $(VICARE) $(VICARE_INSTCHECK_FLAGS)
 
 installcheck-local:
