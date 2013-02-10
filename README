@@ -35,7 +35,7 @@ paragraph, he had tested Template version 1.2.3.
 2. License
 ----------
 
-Copyright (c) 2012 Marco Maggi <marco.maggi-ipsu@poste.it>
+Copyright (c) 2012, 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
 
 This  program  is free  software:  you  can redistribute  it
 and/or modify it  under the terms of the  GNU General Public
@@ -58,12 +58,14 @@ License   along   with    this   program.    If   not,   see
 ----------
 
 Before  installing  Vicare/Template  make  sure  to  have  a
-correctly   installed    Template   library.    To   install
-Vicare/Template do this:
+correctly installed Template library and Vicare Scheme.
+
+  To install Vicare/Template from  a proper release tarball,
+we must unpack the archive then do:
 
    $ cd vicare-template-0.1.0
-   $ mkdir "=build"
-   $ cd "=build"
+   $ mkdir build
+   $ cd build
    $ ../configure
    $ make
    $ make check
@@ -81,7 +83,21 @@ shared library to be dynamically loaded.
   The "Makefile" supports the "DESTDIR" environment variable
 to install the files under a temporary location; example:
 
-    $ make install DESTDIR=/tmp/marco/vicare-template
+    $ make install DESTDIR=/tmp/vicare-template
+
+  If,  instead, we  have  checked out  a  revision from  the
+repository, we  will have to first  build the infrastructure
+running a script from the top source directory:
+
+   $ cd vicare-scheme
+   $ sh autogen.sh
+
+after this the procedure is the same as the one for building
+from a proper release tarball.
+
+  Libraries are installed under the directory:
+
+		 $(libdir)/vicare-template
 
   After  installation, the  makefile  rule "vfasl-installed"
 will  precompile the  libraries installed  in  the hierarchy
