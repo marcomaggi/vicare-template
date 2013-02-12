@@ -238,7 +238,7 @@ Return a fixnum representing a version number.
 
 
 @defun vicare-template-version
-Return a Scheme string representing the versio number.
+Return a Scheme string representing the version number.
 @end defun
 
 @c page
