@@ -13,22 +13,8 @@ AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE([-Wall foreign dist-xz no-dist-gzip])
 AM_MAINTAINER_MODE
 
-#page
-#### options
-
-VICARE_DEBUG=no
-AC_MSG_CHECKING([whether debugging features are included in compiled Scheme libraries])
-AC_ARG_ENABLE([debug],
-  [AS_HELP_STRING([--enable-debug],
-     [enable compilation of Scheme libraries with debugging features (default is disable)])],
-  [AC_MSG_RESULT([$enableval])
-  if test "z$enableval" = zno
-  then VICARE_DEBUG=no
-  else VICARE_DEBUG=yes
-  fi],
-  [VICARE_DEBUG=no
-   AC_MSG_RESULT([no])])
-AM_CONDITIONAL([WANT_VICARE_DEBUG],[test x$VICARE_DEBUG = xyes])
+VICARE_OPTION_DEBUGGING_MODE
+VICARE_OPTION_NAUSICAA([no])
 
 #page
 #### compiler
@@ -61,27 +47,10 @@ dnl   [AC_MSG_FAILURE([missing template.h header],[2])])
 dnl AC_CHECK_LIB([template],[template],,
 dnl   [AC_MSG_FAILURE([missing Template library],[2])])
 
-vicare_template_VERSION_INTERFACE_CURRENT=0
-vicare_template_VERSION_INTERFACE_REVISION=0
-vicare_template_VERSION_INTERFACE_AGE=0
-AC_DEFINE_UNQUOTED([vicare_template_VERSION_INTERFACE_CURRENT],
-  [$vicare_template_VERSION_INTERFACE_CURRENT],
-  [current interface number])
-AC_DEFINE_UNQUOTED([vicare_template_VERSION_INTERFACE_REVISION],
-  [$vicare_template_VERSION_INTERFACE_REVISION],
-  [current interface implementation number])
-AC_DEFINE_UNQUOTED([vicare_template_VERSION_INTERFACE_AGE],
-  [$vicare_template_VERSION_INTERFACE_AGE],
-  [current interface age number])
-AC_DEFINE_UNQUOTED([vicare_template_VERSION_INTERFACE_STRING],
-  ["$vicare_template_VERSION_INTERFACE_CURRENT.$vicare_template_VERSION_INTERFACE_REVISION"],
-  [library interface version])
-AC_SUBST([vicare_template_VERSION_INTERFACE_CURRENT])
-AC_SUBST([vicare_template_VERSION_INTERFACE_REVISION])
-AC_SUBST([vicare_template_VERSION_INTERFACE_AGE])
+VICARE_EXTENSION_LIBRARY_VERSION([template],[0],[0],[0])
 
 #page
-#### symbols
+#### C language preprocessor symbols from the file "libesmtp.h"
 
 m4_define([VICARE_INCLUDES],[
 AC_INCLUDES_DEFAULT
@@ -95,6 +64,11 @@ AC_INCLUDES_DEFAULT
 
 dnl Stuff
 dnl VICARE_CONSTANT_TESTS([XML_TRUE XML_FALSE])
+
+#page
+#### C language functions from the header file "libesmtp.h"
+
+dnl AC_CHECK_FUNCS([template_version])
 
 #page
 #### finish

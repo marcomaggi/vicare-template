@@ -5,9 +5,9 @@
 
   Abstract
 
+	Version functions.
 
-
-  Copyright (C) 2012 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -28,11 +28,7 @@
  ** Headers.
  ** ----------------------------------------------------------------- */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-#include <vicare.h>
-// #include <template.h>
+#include "vicare-template-internals.h"
 
 
 /** --------------------------------------------------------------------
