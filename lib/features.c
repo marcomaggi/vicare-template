@@ -7,7 +7,7 @@
 
 
 
-  Copyright (C) 2012 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -44,7 +44,7 @@ main (int argc, const char *const argv[])
 ;;;\n\
 ;;;\n\
 ;;;\n\
-;;;Copyright (C) 2012 Marco Maggi <marco.maggi-ipsu@poste.it>\n\
+;;;Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>\n\
 ;;;\n\
 ;;;This program is free software:  you can redistribute it and/or modify\n\
 ;;;it under the terms of the  GNU General Public License as published by\n\
@@ -62,7 +62,7 @@ main (int argc, const char *const argv[])
 \n\
 \n\
 #!r6rs\n\
-(library (vicare template features)\n\
+(library (vicare category template features)\n\
   (export\n\
     HAVE_TEMPLATE_OPTION\n\
     )\n\

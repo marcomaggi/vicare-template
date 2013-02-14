@@ -8,7 +8,7 @@
 ;;;
 ;;;
 ;;;
-;;;Copyright (C) 2012 Marco Maggi <marco.maggi-ipsu@poste.it>
+;;;Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
 ;;;
 ;;;This program is free software:  you can redistribute it and/or modify
 ;;;it under the terms of the  GNU General Public License as published by
@@ -27,7 +27,7 @@
 
 #!vicare
 #!(load-shared-library "vicare-template")
-(library (vicare template)
+(library (vicare category template)
   (export
 
     ;; version numbers and strings
@@ -36,10 +36,13 @@
     vicare-template-version-interface-age
     vicare-template-version
 
+;;; --------------------------------------------------------------------
+;;; still to be implemented
+
     )
   (import (vicare)
-    (vicare template constants)
-    (prefix (vicare template unsafe-capi) capi.)
+    (vicare category template constants)
+    (prefix (vicare category template unsafe-capi) capi.)
     (vicare syntactic-extensions)
     #;(prefix (vicare words) words.))
 

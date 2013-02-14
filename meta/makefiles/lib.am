@@ -52,12 +52,12 @@ vfasl-installed:
 noinst_PROGRAMS		= features
 features_SOURCES	= features.c
 
-vicare/mail/libesmtp/features.sls : features
+vicare/$(VICARE_LIB_INFIX)/features.sls : features
 	./features >$@
 
 ## --------------------------------------------------------------------
 
-CLEANFILES	= vicare/mail/libesmtp/features.sls
+CLEANFILES	= vicare/$(VICARE_LIB_INFIX)/features.sls
 
 clean-local:
 	-rm -rf $(VICARE_FASL_DIRECTORY)

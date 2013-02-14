@@ -79,7 +79,7 @@ AC_CONFIG_FILES([Makefile]
         [doc/Makefile]
         [tests/Makefile]
         [lib/Makefile]
-        [lib/vicare/template/constants.sls]
+        [lib/vicare/category/template/constants.sls]
         [meta/slackware/doinst.sh])
 AC_OUTPUT
 

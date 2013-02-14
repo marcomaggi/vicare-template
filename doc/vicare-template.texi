@@ -38,8 +38,10 @@
 
 @c To be used as @value{COPYRIGHT_YEARS} whenever we need to include the
 @c list of copyright years.
-@set COPYRIGHT_YEARS            2012, 2013
+@set COPYRIGHT_YEARS            2013
 
+
+@set TEMPLATE_VERSION           1.2.3
 
 @c page
 @c ------------------------------------------------------------
@@ -122,6 +124,7 @@ entitled ``@gnu{} Free Documentation License''.
 @menu
 * overview::                    Overview of the package.
 * version::                     Template version informations.
+* plain::                       Plain programming interface.
 
 Appendices
 
@@ -150,49 +153,50 @@ language and Scheme language libraries for Vicare Scheme; it provides
 bindings for the Template C language library.
 
 The last time the author bothered to update this paragraph, he had
-tested Template version 1.2.3; the Template library is available at:
+tested Template version @value{TEMPLATE_VERSION}; the Template library
+is available at:
 
 @center @url{http://template.sourceforge.net/}
 
 The package installs a C language library implementing wrapper C
 functions for the C language Template library; on top of this, the
-Scheme library @library{vicare template} exports one binding for each
-Template public function; additionally the library @library{vicare
-template constants} exports one binding for each constant value defined
-in the C language header @file{template.h}.
+Scheme library @library{vicare category template} exports one binding
+for each Template public function; additionally the library
+@library{vicare category template constants} exports one binding for
+each constant value defined in the C language header @file{template.h}.
 
 The following Scheme libraries are installed:
 
 @table @library
-@item vicare template
-@cindex Library @library{vicare template}
-@cindex @library{vicare template}, library
+@item vicare category template
+@cindex Library @library{vicare category template}
+@cindex @library{vicare category template}, library
 It exports one binding for each Template public function.  All the
 Scheme function names are directly derived from the C function names by
 replacing underscore characters @samp{_} with dash characters @samp{-};
 so @cfunc{template_doit} becomes @func{template-doit}.
 
-@item vicare template unsafe-capi
-@cindex Library @library{vicare template unsafe-capi}
-@cindex @library{vicare template unsafe-capi}, library
+@item vicare category template unsafe-capi
+@cindex Library @library{vicare category template unsafe-capi}
+@cindex @library{vicare category template unsafe-capi}, library
 It exports one syntax binding for each Template public function.  All
 the Scheme syntax names are directly derived from the C function names
 by replacing underscore characters @samp{_} with dash characters
-@samp{-}; so @cfunc{template-doit} becomes @func{template-doit}.
+@samp{-}; so @cfunc{template_doit} becomes @func{template-doit}.
 
 These syntaxes expand to a direct call to the C language wrapper
 functions in the @value{PACKAGE} library; they are not meant to be
 called in normal usage of the package.
 
-@item vicare template constants
-@cindex Library @library{vicare template constants}
-@cindex @library{vicare template constants}, library
+@item vicare category template constants
+@cindex Library @library{vicare category template constants}
+@cindex @library{vicare category template constants}, library
 It exports one binding for each constant value defined in the C language
 header @file{template.h}.
 
-@item vicare template features
-@cindex Library @library{vicare template features}
-@cindex @library{vicare template features}, library
+@item vicare category template features
+@cindex Library @library{vicare category template features}
+@cindex @library{vicare category template features}, library
 It exports one identifier syntax binding for each @code{HAVE_} constant
 defined by the @command{configure} script, expanding to @true{} or
 @false{}.
@@ -227,7 +231,7 @@ The installed C library follows version numbering as established by the
 system, libtool, Shared library support for @gnu{}}.
 
 The following bindings are exported by the library @library{vicare
-template}.
+category template}.
 
 
 @defun vicare-template-version-interface-current
@@ -240,6 +244,11 @@ Return a fixnum representing a version number.
 @defun vicare-template-version
 Return a Scheme string representing the version number.
 @end defun
+
+@c page
+@node plain
+@chapter Plain programming interface
+
 
 @c page
 @c ------------------------------------------------------------
