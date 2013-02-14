@@ -11,6 +11,9 @@
 @xref{\NODE\,\TITLE\,\TITLE\,template}
 @end macro
 
+@macro template{}
+@acronym{template}
+@end macro
 
 @c page
 @c ------------------------------------------------------------
@@ -42,6 +45,7 @@
 
 
 @set TEMPLATE_VERSION           1.2.3
+@set TEMPLATE_URL               http://template.sourceforge.net/
 
 @c page
 @c ------------------------------------------------------------
@@ -65,9 +69,9 @@ development takes place at:
 @center @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
 
 @noindent
-Template is available at:
+@template{} is available at:
 
-@center @url{http://template.sourceforge.net/}
+@center @url{@value{TEMPLATE_URL}}
 
 @noindent
 Copyright @copyright{} @value{COPYRIGHT_YEARS} by @value{AUTHOR} @value{AUTHOR_EMAIL}
@@ -290,7 +294,7 @@ the home page of the Nausicaa project is at:
 @noindent
 Template can be found here:
 
-@center @url{http://template.sourceforge.net/}
+@center @url{@value{TEMPLATE_URL}}
 
 @c page
 @node concept index
