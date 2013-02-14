@@ -35,7 +35,7 @@ paragraph, he had tested Template version 1.2.3.
 2. License
 ----------
 
-Copyright (c) 2012, 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
+Copyright (c) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
 
 This  program  is free  software:  you  can redistribute  it
 and/or modify it  under the terms of the  GNU General Public
@@ -99,10 +99,11 @@ from a proper release tarball.
 
 		  $(libdir)/vicare-scheme
 
-  After  installation, the  makefile  rule "vfasl-installed"
-will  precompile the  libraries installed  in  the hierarchy
-(vicare template ---); the makefile rule "installcheck" will
-run the test suite against the installed libraries.
+  After  installation, the  makefile rule  "vfasl-installed"
+will  precompile the  libraries installed  in the  hierarchy
+(vicare   category   template   ---);  the   makefile   rule
+"installcheck" will run the test suite against the installed
+libraries.
 
 
 4. Usage
