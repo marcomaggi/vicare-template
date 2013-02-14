@@ -226,7 +226,7 @@ to the Template's documentation for details.
 
 @c page
 @node version
-@chapter Tamplate version informations
+@chapter Template version informations
 
 
 The installed C library follows version numbering as established by the
