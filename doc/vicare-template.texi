@@ -12,7 +12,7 @@
 @end macro
 
 @macro template{}
-@acronym{template}
+@acronym{TEMPLATE}
 @end macro
 
 @c page
@@ -24,7 +24,7 @@
 
 @c To be used as @value{PACKAGE} whenever we need to include the full
 @c name of this package.
-@set PACKAGE                    Vicare/Template
+@set PACKAGE                    Vicare/@template{}
 
 @c To be used as @value{PACKAGE} whenever we need to include the
 @c nickname of the project: the name that is used to compose the
@@ -154,18 +154,18 @@ Vicare Scheme is an @rnrs{6} compliant Scheme language implementation in
 the form of a native compiler for x86 architectures, officially
 supporting @gnu{}+Linux systems.  @value{PACKAGE} is a distribution of C
 language and Scheme language libraries for Vicare Scheme; it provides
-bindings for the Template C language library.
+bindings for the @template{} C language library.
 
 The last time the author bothered to update this paragraph, he had
-tested Template version @value{TEMPLATE_VERSION}; the Template library
-is available at:
+tested @template{} version @value{TEMPLATE_VERSION}; the @template{}
+library is available at:
 
-@center @url{http://template.sourceforge.net/}
+@center @url{@value{TEMPLATE_URL}}
 
 The package installs a C language library implementing wrapper C
-functions for the C language Template library; on top of this, the
+functions for the C language @template{} library; on top of this, the
 Scheme library @library{vicare category template} exports one binding
-for each Template public function; additionally the library
+for each @template{} public function; additionally the library
 @library{vicare category template constants} exports one binding for
 each constant value defined in the C language header @file{template.h}.
 
@@ -175,7 +175,7 @@ The following Scheme libraries are installed:
 @item vicare category template
 @cindex Library @library{vicare category template}
 @cindex @library{vicare category template}, library
-It exports one binding for each Template public function.  All the
+It exports one binding for each @template{} public function.  All the
 Scheme function names are directly derived from the C function names by
 replacing underscore characters @samp{_} with dash characters @samp{-};
 so @cfunc{template_doit} becomes @func{template-doit}.
@@ -183,7 +183,7 @@ so @cfunc{template_doit} becomes @func{template-doit}.
 @item vicare category template unsafe-capi
 @cindex Library @library{vicare category template unsafe-capi}
 @cindex @library{vicare category template unsafe-capi}, library
-It exports one syntax binding for each Template public function.  All
+It exports one syntax binding for each @template{} public function.  All
 the Scheme syntax names are directly derived from the C function names
 by replacing underscore characters @samp{_} with dash characters
 @samp{-}; so @cfunc{template_doit} becomes @func{template-doit}.
@@ -222,11 +222,11 @@ $ sudo vicare \
 @end example
 
 This document contains only a brief description of the functions: refer
-to the Template's documentation for details.
+to the @template{}'s documentation for details.
 
 @c page
 @node version
-@chapter Template version informations
+@chapter @template{} version informations
 
 
 The installed C library follows version numbering as established by the
