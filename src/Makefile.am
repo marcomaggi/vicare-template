@@ -8,6 +8,7 @@ vicare_template_VERSION	= $(vicare_template_CURRENT):$(vicare_template_REVISION)
 lib_LTLIBRARIES			= libvicare-template.la
 libvicare_template_la_LDFLAGS	= -version-info $(vicare_template_VERSION)
 libvicare_template_la_SOURCES	= \
+	vicare-template-core.c			\
 	vicare-template-version.c		\
 	vicare-template-internals.h
 
