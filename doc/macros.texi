@@ -318,6 +318,10 @@ Revised^6 Report on the algorithmic language Scheme
 @ref{\NODE\,\TITLE\,\TITLE\,nausicaa-scheme}
 @end macro
 
+@macro manpage{NODE, TITLE}
+@ref{\NODE\,\TITLE\,\TITLE\,*manpages*}
+@end macro
+
 @c ------------------------------------------------------------
 @c RNRS document macros.
 @c ------------------------------------------------------------
