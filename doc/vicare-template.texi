@@ -7,14 +7,6 @@
 @include version.texi
 @include macros.texi
 
-@macro templateref{NODE, TITLE}
-@xref{\NODE\,\TITLE\,\TITLE\,template}
-@end macro
-
-@macro template{}
-@acronym{TEMPLATE}
-@end macro
-
 @c page
 @c ------------------------------------------------------------
 @c Values.
@@ -43,9 +35,22 @@
 @c list of copyright years.
 @set COPYRIGHT_YEARS            2013
 
+@c ------------------------------------------------------------
 
-@set TEMPLATE_VERSION           1.2.3
-@set TEMPLATE_URL               http://template.sourceforge.net/
+@set FOREIGN_PACKAGE            @template{}
+@set FOREIGN_VERSION            1.2.3
+@set FOREIGN_URL                @url{http:/@//@/www.gnu.org/@/software/@/template/@/}
+@set GITHUB_URL                 @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
+@set DOWNLOAD_URL               @url{http://code.google.com/p/vicare-scheme/downloads/list}
+@set FOREIGN_SCHEME_LIB         @library{vicare category template}
+
+@macro templateref{NODE, TITLE}
+@xref{\NODE\,\TITLE\,\TITLE\,template}
+@end macro
+
+@macro template{}
+@acronym{TEMPLATE}
+@end macro
 
 @c page
 @c ------------------------------------------------------------
@@ -55,23 +60,23 @@
 @copying
 This document describes version @version{} of @value{PACKAGE}, a
 distribution of C and Scheme libraries for Vicare Scheme, an @rnrs{6}
-compliant Scheme implementation; it provides bindings for the Template C
-language library.
+compliant Scheme implementation; it provides bindings for the
+@value{FOREIGN_PACKAGE} C language library.
 
 The package is distributed under the terms of the @gnu{} General Public
 License (@gpl{}) and can be downloaded from:
 
-@center @url{http://code.google.com/p/vicare-scheme/downloads/list}
+@center @value{DOWNLOAD_URL}
 
 @noindent
 development takes place at:
 
-@center @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
+@center @value{GITHUB_URL}
 
 @noindent
-@template{} is available at:
+@value{FOREIGN_PACKAGE} is available at:
 
-@center @url{@value{TEMPLATE_URL}}
+@center @value{FOREIGN_URL}
 
 @noindent
 Copyright @copyright{} @value{COPYRIGHT_YEARS} by @value{AUTHOR} @value{AUTHOR_EMAIL}
@@ -154,18 +159,18 @@ Vicare Scheme is an @rnrs{6} compliant Scheme language implementation in
 the form of a native compiler for x86 architectures, officially
 supporting @gnu{}+Linux systems.  @value{PACKAGE} is a distribution of C
 language and Scheme language libraries for Vicare Scheme; it provides
-bindings for the @template{} C language library.
+bindings for the @value{FOREIGN_PACKAGE} C language library.
 
 The last time the author bothered to update this paragraph, he had
-tested @template{} version @value{TEMPLATE_VERSION}; the @template{}
-library is available at:
+tested @value{FOREIGN_PACKAGE} version @value{FOREIGN_VERSION}; the
+@value{FOREIGN_PACKAGE} library is available at:
 
-@center @url{@value{TEMPLATE_URL}}
+@center @value{FOREIGN_URL}
 
 The package installs a C language library implementing wrapper C
-functions for the C language @template{} library; on top of this, the
+functions for the C language @value{FOREIGN_PACKAGE} library; on top of this, the
 Scheme library @library{vicare category template} exports one binding
-for each @template{} public function; additionally the library
+for each @value{FOREIGN_PACKAGE} public function; additionally the library
 @library{vicare category template constants} exports one binding for
 each constant value defined in the C language header @file{template.h}.
 
@@ -175,18 +180,19 @@ The following Scheme libraries are installed:
 @item vicare category template
 @cindex Library @library{vicare category template}
 @cindex @library{vicare category template}, library
-It exports one binding for each @template{} public function.  All the
-Scheme function names are directly derived from the C function names by
-replacing underscore characters @samp{_} with dash characters @samp{-};
-so @cfunc{template_doit} becomes @func{template-doit}.
+It exports one binding for each @value{FOREIGN_PACKAGE} public function.
+All the Scheme function names are directly derived from the C function
+names by replacing underscore characters @samp{_} with dash characters
+@samp{-}; so @cfunc{template_doit} becomes @func{template-doit}.
 
 @item vicare category template unsafe-capi
 @cindex Library @library{vicare category template unsafe-capi}
 @cindex @library{vicare category template unsafe-capi}, library
-It exports one syntax binding for each @template{} public function.  All
-the Scheme syntax names are directly derived from the C function names
-by replacing underscore characters @samp{_} with dash characters
-@samp{-}; so @cfunc{template_doit} becomes @func{template-doit}.
+It exports one syntax binding for each @value{FOREIGN_PACKAGE} public
+function.  All the Scheme syntax names are directly derived from the C
+function names by replacing underscore characters @samp{_} with dash
+characters @samp{-}; so @cfunc{template_doit} becomes
+@func{template-doit}.
 
 These syntaxes expand to a direct call to the C language wrapper
 functions in the @value{PACKAGE} library; they are not meant to be
@@ -222,11 +228,11 @@ $ sudo vicare \
 @end example
 
 This document contains only a brief description of the functions: refer
-to the @template{}'s documentation for details.
+to the @value{FOREIGN_PACKAGE}'s documentation for details.
 
 @c page
 @node version
-@chapter @template{} version informations
+@chapter @value{FOREIGN_PACKAGE} version informations
 
 
 The installed C library follows version numbering as established by the
@@ -234,8 +240,8 @@ The installed C library follows version numbering as established by the
 @gnu{} Libtool @xref{Libtool versioning, interface, Libtool's versioning
 system, libtool, Shared library support for @gnu{}}.
 
-The following bindings are exported by the library @library{vicare
-category template}.
+The following bindings are exported by the library
+@value{FOREIGN_SCHEME_LIB}.
 
 
 @defun vicare-template-version-interface-current
@@ -274,12 +280,12 @@ The documentation of @value{PACKAGE} is available online:
 @noindent
 the latest version of this package can be downloaded from:
 
-@center @url{http://code.google.com/p/vicare-scheme/downloads/list}
+@center @value{DOWNLOAD_URL}
 
 @noindent
 development takes place at:
 
-@center @url{http://github.com/marcomaggi/vicare-template/}
+@center @value{GITHUB_URL}
 
 @noindent
 the home page of the Vicare project is at:
@@ -292,9 +298,9 @@ the home page of the Nausicaa project is at:
 @center @url{http://marcomaggi.github.com/nausicaa.html}
 
 @noindent
-Template can be found here:
+@value{FOREIGN_PACKAGE} can be found here:
 
-@center @url{@value{TEMPLATE_URL}}
+@center @value{FOREIGN_URL}
 
 @c page
 @node concept index
