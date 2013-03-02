@@ -42,7 +42,12 @@
     )
   (import (vicare)
     (vicare category template constants)
-    (prefix (vicare category template unsafe-capi) capi.)
+    (prefix (vicare category template unsafe-capi)
+	    capi.)
+    (prefix (vicare ffi)
+	    ffi.)
+    (prefix (vicare ffi foreign-pointer-wrapper)
+	    ffi.)
     (vicare syntactic-extensions)
     #;(prefix (vicare words) words.))
 
@@ -52,19 +57,6 @@
 #;(define-argument-validation (fixnum who obj)
   (fixnum? obj)
   (assertion-violation who "expected fixnum as argument" obj))
-
-#;(define-argument-validation (pointer who obj)
-  (pointer? obj)
-  (assertion-violation who "expected pointer as argument" obj))
-
-#;(define-argument-validation (callback who obj)
-  (pointer? obj)
-  (assertion-violation who "expected callback as argument" obj))
-
-#;(define-argument-validation (bytevector who obj)
-  (bytevector? obj)
-  (assertion-violation who "expected bytevector as argument" obj))
-
 
 
 ;;;; version functions
@@ -82,6 +74,18 @@
   (ascii->string (capi.vicare-template-version)))
 
 
+;;;; data structures
+
+(ffi.define-foreign-pointer-wrapper alpha
+  (ffi.foreign-destructor #f)
+  (ffi.collector-struct-type #f)
+  (ffi.collected-struct-type beta))
+
+(ffi.define-foreign-pointer-wrapper beta
+  (ffi.foreign-destructor #f)
+  (ffi.collector-struct-type alpha))
+
+
 ;;;; done
 
 #;(set-rtd-printer! (type-descriptor XML_ParsingStatus) %struct-XML_ParsingStatus-printer)
@@ -91,3 +95,6 @@
 )
 
 ;;; end of file
+;; Local Variables:
+;; eval: (put 'ffi.define-foreign-pointer-wrapper 'scheme-indent-function 1)
+;; End:
