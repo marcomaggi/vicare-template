@@ -40,9 +40,11 @@
 @set FOREIGN_PACKAGE            @template{}
 @set FOREIGN_VERSION            1.2.3
 @set FOREIGN_URL                @url{http:/@//@/www.gnu.org/@/software/@/template/@/}
-@set GITHUB_URL                 @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
-@set DOWNLOAD_URL               @url{http://code.google.com/p/vicare-scheme/downloads/list}
 @set FOREIGN_SCHEME_LIB         @library{vicare category template}
+@set GITHUB_URL                 @url{http://github.com/marcomaggi/vicare-template}
+@set DOWNLOAD_URL               @url{http://code.google.com/p/vicare-scheme/downloads/list}
+@set DOCUMENTATION_URL          @url{http://marcomaggi.github.com/docs/vicare-template.html}
+
 
 @macro templateref{NODE, TITLE}
 @xref{\NODE\,\TITLE\,\TITLE\,template}
@@ -275,7 +277,7 @@ Return a Scheme string representing the version number.
 
 The documentation of @value{PACKAGE} is available online:
 
-@center @url{http://marcomaggi.github.com/docs/vicare-template.html}
+@center @value{DOCUMENTATION_URL}
 
 @noindent
 the latest version of this package can be downloaded from:
