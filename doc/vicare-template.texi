@@ -218,8 +218,12 @@ Scheme libraries are installed under the directory:
 
 @center @file{$(libdir)/vicare-scheme}
 
-After installation, under the directory @code{$libexecdir/$PACKAGE}, a
-script @file{compile-all.sps} can be executed to precompile the
+After installation, under the directory:
+
+@center @file{$(libexecdir)/@value{PACKAGE_NICKNAME}}
+
+@noindent
+a script @file{compile-all.sps} can be executed to precompile the
 installed libraries; for example:
 
 @example
