@@ -53,6 +53,7 @@ noinst_PROGRAMS		= features
 features_SOURCES	= features.c
 
 vicare/$(VICARE_LIB_INFIX)/features.sls : features
+	$(MKDIR_P) vicare/$(VICARE_LIB_INFIX)
 	./features >$@
 
 ## --------------------------------------------------------------------
