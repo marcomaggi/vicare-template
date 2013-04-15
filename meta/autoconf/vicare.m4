@@ -4,7 +4,7 @@ dnl Common initialisation for the Vicare Scheme environment.
 AC_DEFUN([VICARE_SCHEME],
   [AC_CHECK_HEADERS([vicare.h],,[AC_MSG_FAILURE([missing vicare.h header],[2])])
    AC_CHECK_PROG([VICARE],[vicare],[vicare],[:])
-   AS_VAR_SET(VFLAGS,["-O2"])])
+   AS_VAR_SET_IF(VFLAGS,,[AS_VAR_SET(VFLAGS,["-O2"])])])
 
 AC_DEFUN([VICARE_OUTPUT],
   [AC_SUBST([VFLAGS])])
