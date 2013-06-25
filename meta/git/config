@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	url = /home/{git}/devel-ikarus/vicare-template.git
+[remote "github"]
+	url = git@github.com:marcomaggi/vicare-template.git
+	fetch = +refs/heads/*:refs/remotes/github/*
+[marcomaggi]
+	package-name = vicare-template
+	backup-section = devel-ikarus
