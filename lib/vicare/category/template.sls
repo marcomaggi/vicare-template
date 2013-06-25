@@ -48,8 +48,8 @@
 	    ffi.)
     (prefix (vicare ffi foreign-pointer-wrapper)
 	    ffi.)
-    (vicare syntactic-extensions)
-    #;(prefix (vicare words) words.))
+    #;(vicare language-extensions syntaxes)
+    #;(prefix (vicare platform words) words.))
 
 
 ;;;; arguments validation
