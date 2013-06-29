@@ -29,8 +29,8 @@
 (import (vicare)
   (vicare category template)
   (vicare category template constants)
-;;;  (prefix (vicare ffi) ffi.)
-  (vicare syntactic-extensions))
+  #;(prefix (vicare ffi) ffi.)
+  #;(vicare language-extensions syntaxes))
 
 
 ;;;; helpers
