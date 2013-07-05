@@ -7,8 +7,7 @@
 	string-map
 	string-prefix?
 	string-tokenize
-	string-join)
-  (vicare syntactic-extensions))
+	string-join))
 
 
 ;;;; type definitions
