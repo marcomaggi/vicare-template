@@ -42,8 +42,11 @@
 @set FOREIGN_URL                @url{http:/@//@/www.gnu.org/@/software/@/template/@/}
 @set FOREIGN_SCHEME_LIB         @library{vicare category template}
 @set GITHUB_URL                 @url{http://github.com/marcomaggi/vicare-template}
-@set DOWNLOAD_URL               @url{http://code.google.com/p/vicare-scheme/downloads/list}
+@set SOURCEFORGE_URL            @url{https://sourceforge.net/projects/vicare-template/}
+@set DOWNLOAD_URL               @url{https://sourceforge.net/projects/vicare-template/files/}
 @set DOCUMENTATION_URL          @url{http://marcomaggi.github.com/docs/vicare-template.html}
+@set VICARE_HOMEPAGE_URL        @url{http://marcomaggi.github.com/vicare.html}
+@set NAUSICAA_HOMEPAGE_URL      @url{http://marcomaggi.github.com/nausicaa.html}
 
 
 @macro templateref{NODE, TITLE}
@@ -74,6 +77,11 @@ License (@gpl{}) and can be downloaded from:
 development takes place at:
 
 @center @value{GITHUB_URL}
+
+@noindent
+and as backup at:
+
+@center @value{SOURCEFORGE_URL}
 
 @noindent
 @value{FOREIGN_PACKAGE} is available at:
@@ -294,14 +302,19 @@ development takes place at:
 @center @value{GITHUB_URL}
 
 @noindent
+and as backup at:
+
+@center @value{SOURCEFORGE_URL}
+
+@noindent
 the home page of the Vicare project is at:
 
-@center @url{http://marcomaggi.github.com/vicare.html}
+@center @value{VICARE_HOMEPAGE_URL}
 
 @noindent
 the home page of the Nausicaa project is at:
 
-@center @url{http://marcomaggi.github.com/nausicaa.html}
+@center @value{NAUSICAA_HOMEPAGE_URL}
 
 @noindent
 @value{FOREIGN_PACKAGE} can be found here:
