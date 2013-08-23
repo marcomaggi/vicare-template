@@ -90,11 +90,16 @@ repository, we  will have to first  build the infrastructure
 running a script from the top source directory:
 
    $ cd vicare-template
-   $ libtoolize
    $ sh autogen.sh
 
 after this the procedure is the same as the one for building
-from a proper release tarball.
+from  a  proper  release  tarball, but  we  have  to  enable
+maintainer mode:
+
+    $ ../configure --enable-maintainer-mode [options]
+    $ make
+    $ make check
+    $ make install
 
   Libraries are installed under the directory:
 
