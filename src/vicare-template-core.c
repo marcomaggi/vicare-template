@@ -32,12 +32,61 @@
 
 
 /** --------------------------------------------------------------------
+ ** Alpha struct.
+ ** ----------------------------------------------------------------- */
+
+#define HAVE_TEMPLATE_ALPHA_INITIALISE		1
+#define HAVE_TEMPLATE_ALPHA_FINALISE		1
+
+typedef struct template_alpha_tag_t {
+  int	num;
+} template_alpha_t;
+
+
+ikptr
+ikrt_template_alpha_initialise (ikpcb * pcb)
+{
+#ifdef HAVE_TEMPLATE_ALPHA_INITIALISE
+  template_alpha_t *	rv;
+  rv = malloc(sizeof(template_alpha_t));
+  if (NULL != rv) {
+    rv->num = 123;
+    return ika_pointer_alloc(pcb, (ik_ulong)rv);
+  } else
+    return IK_FALSE;
+#else
+  feature_failure(__func__);
+#endif
+}
+ikptr
+ikrt_template_alpha_finalise (ikptr s_alpha, ikpcb * pcb)
+{
+#ifdef HAVE_TEMPLATE_ALPHA_FINALISE
+  ikptr		s_pointer	= IK_TEMPLATE_ALPHA_POINTER(s_alpha);
+  if (ik_is_pointer(s_pointer)) {
+    template_alpha_t *	alpha	= IK_POINTER_DATA_VOIDP(s_pointer);
+    int		owner		= IK_BOOLEAN_TO_INT(IK_TEMPLATE_ALPHA_OWNER(s_alpha));
+    if (alpha && owner) {
+      free(alpha);
+      IK_POINTER_SET_NULL(s_pointer);
+    }
+  }
+  /* Return false so that the return value of "$template-alpha-finalise"
+     is always false. */
+  return IK_FALSE;
+#else
+  feature_failure(__func__);
+#endif
+}
+
+
+/** --------------------------------------------------------------------
  ** Still to be implemented.
  ** ----------------------------------------------------------------- */
 
 #if 0
 ikptr
-ikrt_template-doit (ikpcb * pcb)
+ikrt_template_doit (ikpcb * pcb)
 {
 #ifdef HAVE_TEMPLATE_DOIT
   return IK_VOID;
@@ -46,6 +95,5 @@ ikrt_template-doit (ikpcb * pcb)
 #endif
 }
 #endif
-
 
 /* end of file */

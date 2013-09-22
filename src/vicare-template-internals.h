@@ -42,15 +42,11 @@
  ** Handling of Scheme objects.
  ** ----------------------------------------------------------------- */
 
-#define ika_integer_from_template_errcode(PCB,CODE)	\
-	ika_integer_from_int((PCB),(CODE))
-/* IK_FIX(CODE) */
-
-/* Accessors for the fields of the Scheme structure "struct". */
-#define IK_TEMPLATE_STRUCT_POINTER(CONN)		IK_FIELD((CONN),0)
-#define IK_TEMPLATE_STRUCT_PATHNAME(CONN)		IK_FIELD((CONN),1)
-#define IK_TEMPLATE_CONNECTION(CONN)	\
-  IK_POINTER_DATA_VOIDP(IK_TEMPLATE_STRUCT_POINTER(CONN))
+/* Accessors for the fields of the Scheme structure "template_alpha". */
+#define IK_TEMPLATE_ALPHA_POINTER(ALPHA)	IK_FIELD((ALPHA),0)
+#define IK_TEMPLATE_ALPHA_OWNER(ALPHA)		IK_FIELD((ALPHA),1)
+#define IK_TEMPLATE_ALPHA(ALPHA)	\
+  IK_POINTER_DATA_VOIDP(IK_TEMPLATE_ALPHA_POINTER(ALPHA))
 
 
 /** --------------------------------------------------------------------
@@ -69,7 +65,6 @@ feature_failure_ (const char * funcname)
 /** --------------------------------------------------------------------
  ** Done.
  ** ----------------------------------------------------------------- */
-
 
 #endif /* VICARE_TEMPLATE_INTERNALS_H */
 

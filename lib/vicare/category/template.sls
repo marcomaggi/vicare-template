@@ -36,18 +36,32 @@
     vicare-template-version-interface-age
     vicare-template-version
 
+    ;; template alpha struct
+    template-alpha-initialise
+    template-alpha-finalise
+    template-alpha?
+    template-alpha?/alive		$template-alpha-alive?
+    template-alpha-custom-destructor	set-template-alpha-custom-destructor!
+    template-alpha-putprop		template-alpha-getprop
+    template-alpha-remprop		template-alpha-property-list
+    template-alpha-hash
+
+    template-alpha.vicare-arguments-validation
+    template-alpha/alive.vicare-arguments-validation
+    false-or-template-alpha.vicare-arguments-validation
+    false-or-template-alpha/alive.vicare-arguments-validation
+
 ;;; --------------------------------------------------------------------
 ;;; still to be implemented
 
     )
   (import (vicare)
     (vicare category template constants)
-    (prefix (vicare category template unsafe-capi)
-	    capi.)
-    (prefix (vicare ffi)
-	    ffi.)
-    (prefix (vicare ffi foreign-pointer-wrapper)
-	    ffi.)
+    (prefix (vicare category template unsafe-capi) capi.)
+    #;(prefix (vicare ffi) ffi.)
+    (prefix (vicare ffi foreign-pointer-wrapper) ffi.)
+    (vicare arguments validation)
+    #;(vicare arguments general-c-buffers)
     #;(vicare language-extensions syntaxes)
     #;(prefix (vicare platform words) words.))
 
@@ -74,23 +88,50 @@
   (ascii->string (capi.vicare-template-version)))
 
 
-;;;; data structures
+;;;; data structures: alpha
 
-(ffi.define-foreign-pointer-wrapper alpha
-  (ffi.foreign-destructor #f)
+(ffi.define-foreign-pointer-wrapper template-alpha
+  (ffi.foreign-destructor capi.template-alpha-finalise)
+  #;(ffi.foreign-destructor #f)
   (ffi.collector-struct-type #f)
-  (ffi.collected-struct-type beta))
+  (ffi.collected-struct-type template-beta))
 
-(ffi.define-foreign-pointer-wrapper beta
+(module ()
+  (set-rtd-printer! (type-descriptor template-alpha)
+    (lambda (S port sub-printer)
+      (define-inline (%display thing)
+	(display thing port))
+      (define-inline (%write thing)
+	(write thing port))
+      (%display "#[template-alpha")
+      (%display " pointer=")	(%display ($template-alpha-pointer  S))
+      (%display "]"))))
+
+;;; --------------------------------------------------------------------
+
+(define (template-alpha-initialise)
+  (define who 'template-alpha-initialise)
+  (cond ((capi.template-alpha-initialise)
+	 => (lambda (rv)
+	      (make-template-alpha/owner rv)))
+	(else
+	 (error who "unable to create alpha object"))))
+
+(define (template-alpha-finalise alpha)
+  (define who 'template-alpha-finalise)
+  (with-arguments-validation (who)
+      ((template-alpha		alpha))
+    ($template-alpha-finalise alpha)))
+
+
+;;;; data structures: beta
+
+(ffi.define-foreign-pointer-wrapper template-beta
   (ffi.foreign-destructor #f)
-  (ffi.collector-struct-type alpha))
+  (ffi.collector-struct-type template-alpha))
 
 
 ;;;; done
-
-#;(set-rtd-printer! (type-descriptor XML_ParsingStatus) %struct-XML_ParsingStatus-printer)
-
-#;(post-gc-hooks (cons %free-allocated-parser (post-gc-hooks)))
 
 )
 

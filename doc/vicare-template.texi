@@ -142,7 +142,6 @@ entitled ``@gnu{} Free Documentation License''.
 
 @menu
 * overview::                    Overview of the package.
-* version::                     Template version informations.
 * plain::                       Plain programming interface.
 
 Appendices
@@ -245,8 +244,26 @@ This document contains only a brief description of the functions: refer
 to the @value{FOREIGN_PACKAGE}'s documentation for details.
 
 @c page
-@node version
-@chapter @value{FOREIGN_PACKAGE} version informations
+@node plain
+@chapter Plain programming interface
+
+
+@cindex Library @value{FOREIGN_SCHEME_LIB}
+@cindex @value{FOREIGN_SCHEME_LIB}, library
+
+
+The library @value{FOREIGN_SCHEME_LIB} implements the high level @api{}
+for @value{FOREIGN_PACKAGE}.
+
+@menu
+* plain version::               Template version informations.
+* plain alpha::                 Alpha objects.
+* plain misc::                  Miscellaneous operations.
+@end menu
+
+@c page
+@node plain version
+@section @value{FOREIGN_PACKAGE} version informations
 
 
 The installed C library follows version numbering as established by the
@@ -270,8 +287,177 @@ Return a Scheme string representing the version number.
 @end defun
 
 @c page
-@node plain
-@chapter Plain programming interface
+@node plain alpha
+@section Alpha objects
+
+
+@menu
+* plain alpha struct::          Alpha data structure.
+* plain alpha ops::             Operating on alpha objects.
+@end menu
+
+@c page
+@node plain alpha struct
+@subsection Alpha data structure
+
+
+The following bindings are exported by the library
+@value{FOREIGN_SCHEME_LIB}.
+
+
+@deftp {Struct Type} template-alpha
+@cindex Argument @var{alpha}
+@cindex @var{alpha} argument
+Opaque structure type referencing an instance of the C language type
+@code{template_alpha}.  When instances of this type are used as
+arguments to functions: this documentation identifies them as
+@var{alpha}.
+
+Instances of this type must be finalised with
+@func{template-alpha-finalise}; whenever an instance of this type is
+garbage collected: @func{template-alpha-finalise} is automatically
+applied to it and any error ignored.
+
+In certain contexts, instances of this type own the referenced
+@code{template_alpha} value, in other contexts they do not:
+
+@itemize
+@item
+Finalising a @objtype{template-alpha} instance owning the
+@code{template_alpha} value, causes finalisation of the
+@code{template_alpha} value too.
+
+@item
+Finalising a @objtype{template-alpha} instance @strong{not} owning the
+@code{template_alpha} value, leaves the @code{template_alpha} untouched.
+@end itemize
+
+@noindent
+this should happen transparently.
+@end deftp
+
+
+@defun template-alpha? @var{obj}
+Return @true{} if @var{obj} is an instance of @objtype{template-alpha};
+otherwise return @false{}.
+@end defun
+
+
+@defun template-alpha?/alive @var{obj}
+Return @true{} if @var{obj} is an instance of @objtype{template-alpha} and it
+has not been finalised; return @false{} otherwise.
+@end defun
+
+@c ------------------------------------------------------------
+
+@subsubheading Object properties
+
+
+@defun template-alpha-putprop @var{alpha} @var{key} @var{value}
+Add a new property @var{key} to the property list of @var{alpha};
+@var{key} must be a symbol.  If @var{key} is already set: the old entry
+is mutated to reference the new @var{value}.
+@end defun
+
+
+@defun template-alpha-getprop @var{alpha} @var{key}
+Return the value of the property @var{key} in the property list of
+@var{alpha}; if @var{key} is not set: return @false{}.  @var{key} must
+be a symbol.
+@end defun
+
+
+@defun template-alpha-remprop @var{alpha} @var{key}
+Remove the property @var{key} from the property list of @var{alpha}; if
+@var{key} is not set: nothing happens.  @var{key} must be a symbol.
+@end defun
+
+
+@defun template-alpha-property-list @var{alpha}
+Return a new association list representing the property list of
+@var{alpha}.  The order of the entries is the same as the property
+creation order.
+@end defun
+
+@c ------------------------------------------------------------
+
+@subsubheading Custom destructor
+
+
+@defun alpha-custom-destructor @var{alpha}
+@defunx set-alpha-custom-destructor! @var{alpha} @var{func}
+Retrieve or set a destructor function associated to @var{alpha}.
+
+Whenever @var{alpha} is finalised, either explicitly with
+@func{template-alpha-finalise} or implicitly by the garbage collector,
+@var{func} is applied to @var{alpha} before the internal state of
+@var{alpha} is destroyed.
+@end defun
+
+@c ------------------------------------------------------------
+
+@subsubheading Other operations
+
+
+@defun template-alpha-hash @var{alpha}
+Return an exact integer to be used as hashtable key for @var{alpha}.
+@end defun
+
+@c ------------------------------------------------------------
+
+@subsubheading Arguments validation
+
+The following bindings are meant to be used with the facilities of the
+library @library{vicare arguments validation}.
+
+
+@deffn {Validation Clause} template-alpha @var{obj}
+@deffnx {Validation Clause} false-or-template-alpha @var{obj}
+Succeed if @var{obj} satisfies the predicate @func{template-alpha?}; the
+second clause also accepts @false{}.
+@end deffn
+
+
+@deffn {Validation Clause} template-alpha/alive @var{obj}
+@deffnx {Validation Clause} false-or-template-alpha/alive @var{obj}
+Succeed if @var{obj} satisfies the predicate @func{template-alpha?/alive};
+the second clause also accepts @false{}.
+@end deffn
+
+
+@c page
+@node plain alpha ops
+@subsection Operating on alpha objects
+
+
+The following bindings are exported by the library
+@value{FOREIGN_SCHEME_LIB}.
+
+
+@defun template-alpha-initialise
+Build and return a new @objtype{template-alpha} object; if an error
+occurs raise an exception.
+@end defun
+
+
+@defun template-alpha-finalise @var{alpha}
+Finalise @var{alpha}; return unspecified values.  It is fine to apply
+this function multiple times to the same @var{alpha} value: the first
+time the underlying data is finalised, the subsequent times nothing
+happens.
+
+If this function is applied to an @var{alpha} value not owning the
+underlying @code{template_alpha} value: @var{alpha} is finalised, but
+the @code{template_alpha} value is left alone.
+@end defun
+
+@c page
+@node plain misc
+@section Miscellaneous operations
+
+
+The following bindings are exported by the library
+@value{FOREIGN_SCHEME_LIB}.
 
 
 @c page

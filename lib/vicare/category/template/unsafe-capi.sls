@@ -35,6 +35,10 @@
     vicare-template-version-interface-age
     vicare-template-version
 
+    ;; template alpha
+    template-alpha-initialise
+    template-alpha-finalise
+
 ;;; --------------------------------------------------------------------
 ;;; still to be implemented
 
@@ -57,10 +61,19 @@
   (foreign-call "ikrt_template_version"))
 
 
+;;;; template alpha struct
+
+(define-inline (template-alpha-initialise)
+  (foreign-call "ikrt_template_alpha_initialise"))
+
+(define-inline (template-alpha-finalise alpha)
+  (foreign-call "ikrt_template_alpha_finalise" alpha))
+
+
 ;;;; still to be implemented
 
 #;(define-inline (vicare-template)
-  (foreign-call "iktr_template"))
+  (foreign-call "ikrt_template"))
 
 
 ;;;; done
