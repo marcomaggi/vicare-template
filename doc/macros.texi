@@ -88,6 +88,14 @@ Revised^6 Report on the algorithmic language Scheme
 @code{\NAME\}
 @end macro
 
+@macro aobjtype{NAME}
+\NAME\
+@end macro
+
+@macro cobjtype{NAME}
+\NAME\
+@end macro
+
 @macro condition{NAME}
 @code{&\NAME\}
 @end macro
@@ -323,11 +331,11 @@ Revised^6 Report on the algorithmic language Scheme
 @end macro
 
 @macro cbuffersref{}
-@ref{cbuffers buffers,buffers,Introduction to generalised C buffers,vicare-scheme}
+@ref{cbuffers buffers,buffers,Introduction to generalised C buffers,vicare-libs}
 @end macro
 
 @macro cstringsref{}
-@ref{cbuffers strings,strings,Introduction to generalised C strings,vicare-scheme}
+@ref{cbuffers strings,strings,Introduction to generalised C strings,vicare-libs}
 @end macro
 
 @c ------------------------------------------------------------
