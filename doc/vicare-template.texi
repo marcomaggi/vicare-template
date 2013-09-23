@@ -256,14 +256,14 @@ The library @value{FOREIGN_SCHEME_LIB} implements the high level @api{}
 for @value{FOREIGN_PACKAGE}.
 
 @menu
-* plain version::               Template version informations.
+* plain version::               @value{PACKAGE} version informations.
 * plain alpha::                 Alpha objects.
 * plain misc::                  Miscellaneous operations.
 @end menu
 
 @c page
 @node plain version
-@section @value{FOREIGN_PACKAGE} version informations
+@section @value{PACKAGE} version informations
 
 
 The installed C library follows version numbering as established by the
