@@ -111,6 +111,16 @@
   (check-for-true
    (integer? (template-alpha-hash (template-alpha-initialise))))
 
+  (check
+      (let ((A (template-alpha-initialise))
+	    (B (template-alpha-initialise))
+	    (T (make-hashtable template-alpha-hash eq?)))
+	(hashtable-set! T A 1)
+	(hashtable-set! T B 2)
+	(list (hashtable-ref T A #f)
+	      (hashtable-ref T B #f)))
+    => '(1 2))
+
 ;;; --------------------------------------------------------------------
 ;;; properties
 

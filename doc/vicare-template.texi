@@ -401,6 +401,12 @@ Whenever @var{alpha} is finalised, either explicitly with
 
 @defun template-alpha-hash @var{alpha}
 Return an exact integer to be used as hashtable key for @var{alpha}.
+Hashtables having a @objtype{flite-voice} as key can be instantiated as
+follows:
+
+@example
+(make-hashtable template-alpha-hash eq?)
+@end example
 @end defun
 
 @c ------------------------------------------------------------
