@@ -185,8 +185,8 @@ each constant value defined in the C language header @file{template.h}.
 
 The following Scheme libraries are installed:
 
-@table @library
-@item vicare category template
+@table @asis
+@item @library{vicare category template}
 @cindex Library @library{vicare category template}
 @cindex @library{vicare category template}, library
 It exports one binding for each @value{FOREIGN_PACKAGE} public function.
@@ -194,7 +194,7 @@ All the Scheme function names are directly derived from the C function
 names by replacing underscore characters @samp{_} with dash characters
 @samp{-}; so @cfunc{template_doit} becomes @func{template-doit}.
 
-@item vicare category template unsafe-capi
+@item @library{vicare category template unsafe-capi}
 @cindex Library @library{vicare category template unsafe-capi}
 @cindex @library{vicare category template unsafe-capi}, library
 It exports one syntax binding for each @value{FOREIGN_PACKAGE} public
@@ -207,13 +207,13 @@ These syntaxes expand to a direct call to the C language wrapper
 functions in the @value{PACKAGE} library; they are not meant to be
 called in normal usage of the package.
 
-@item vicare category template constants
+@item @library{vicare category template constants}
 @cindex Library @library{vicare category template constants}
 @cindex @library{vicare category template constants}, library
 It exports one binding for each constant value defined in the C language
 header @file{template.h}.
 
-@item vicare category template features
+@item @library{vicare category template features}
 @cindex Library @library{vicare category template features}
 @cindex @library{vicare category template features}, library
 It exports one identifier syntax binding for each @code{HAVE_} constant
