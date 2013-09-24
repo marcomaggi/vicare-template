@@ -44,10 +44,8 @@
 @set GITHUB_URL                 @url{http://github.com/marcomaggi/vicare-template}
 @set SOURCEFORGE_URL            @url{https://sourceforge.net/projects/vicare-template/}
 @set DOWNLOAD_URL               @url{https://sourceforge.net/projects/vicare-template/files/}
-@set DOCUMENTATION_URL          @url{http://marcomaggi.github.com/docs/vicare-template.html}
-@set VICARE_HOMEPAGE_URL        @url{http://marcomaggi.github.com/vicare.html}
-@set NAUSICAA_HOMEPAGE_URL      @url{http://marcomaggi.github.com/nausicaa.html}
-
+@set DOCUMENTATION_URL          @url{http://marcomaggi.github.io/docs/vicare-template.html}
+@set VICARE_HOMEPAGE_URL        @url{http://marcomaggi.github.io/vicare.html}
 
 @macro templateref{NODE, TITLE}
 @xref{\NODE\,\TITLE\,\TITLE\,template}
@@ -502,11 +500,6 @@ and as backup at:
 the home page of the Vicare project is at:
 
 @center @value{VICARE_HOMEPAGE_URL}
-
-@noindent
-the home page of the Nausicaa project is at:
-
-@center @value{NAUSICAA_HOMEPAGE_URL}
 
 @noindent
 @value{FOREIGN_PACKAGE} can be found here:
