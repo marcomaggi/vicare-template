@@ -1,8 +1,8 @@
 ;;; -*- coding: utf-8-unix -*-
 ;;;
 ;;;Part of: Vicare/Template
-;;;Contents: compile script for Nausicaa
-;;;Date: Sat Jan 21, 2012
+;;;Contents: demo for documentation
+;;;Date: Tue Jan 24, 2012
 ;;;
 ;;;Abstract
 ;;;
@@ -24,9 +24,34 @@
 ;;;along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ;;;
 
+
 #!r6rs
-(import
-    (only (nausicaa category template))
-  )
+(import (vicare)
+  (vicare category template)
+  (vicare category template constants)
+  #;(prefix (vicare ffi) ffi.)
+  #;(vicare language-extensions syntaxes))
+
+
+;;;; helpers
+
+(define-inline (%pretty-print ?thing)
+  (pretty-print ?thing (current-error-port)))
+
+
+;;;; version functions
+
+(let ()
+
+  (%pretty-print (list (vicare-template-version-interface-current)
+		       (vicare-template-version-interface-revision)
+		       (vicare-template-version-interface-age)
+		       (vicare-template-version)))
+
+  #t)
+
+
+;;;; done
+
 
 ;;; end of file

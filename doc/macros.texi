@@ -178,6 +178,14 @@ Revised^6 Report on the algorithmic language Scheme
 @acronym{OOB}
 @end macro
 
+@macro oop{}
+@acronym{OOP}
+@end macro
+
+@macro oopp{}
+@acronym{OOPP}
+@end macro
+
 @macro os{}
 @acronym{OS}
 @end macro
@@ -320,6 +328,10 @@ Revised^6 Report on the algorithmic language Scheme
 
 @macro vicareref{NODE, TITLE}
 @ref{\NODE\,\TITLE\,\TITLE\,vicare-scheme}
+@end macro
+
+@macro libsref{NODE, TITLE}
+@ref{\NODE\,\TITLE\,\TITLE\,vicare-libs}
 @end macro
 
 @macro nauref{NODE, TITLE}

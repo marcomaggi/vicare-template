@@ -13,9 +13,9 @@ nobase_nodist_libvicare2_DATA = \
 	vicare/category/template/constants.sls		\
 	vicare/category/template/features.sls
 
-# if WANT_NAUSICAA
-# nobase_dist_libvicare_DATA	+= nausicaa/category/template.vicare.sls
-# endif
+if WANT_NAUSICAA
+nobase_dist_libvicare_DATA	+= nausicaa/category/template.vicare.sls
+endif
 
 VICARE_LIB_INFIX	= category/template
 

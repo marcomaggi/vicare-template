@@ -1,8 +1,8 @@
 ;;; -*- coding: utf-8-unix -*-
 ;;;
 ;;;Part of: Vicare/Template
-;;;Contents: proof for documentation
-;;;Date: Tue Jan 24, 2012
+;;;Contents: demo for documentation, Nausicaa API
+;;;Date: Mon Sep 30, 2013
 ;;;
 ;;;Abstract
 ;;;
@@ -26,11 +26,9 @@
 
 
 #!r6rs
-(import (vicare)
-  (vicare category template)
-  (vicare category template constants)
-  #;(prefix (vicare ffi) ffi.)
-  #;(vicare language-extensions syntaxes))
+(import (nausicaa)
+  (nausicaa category template)
+  #;(prefix (vicare ffi) ffi.))
 
 
 ;;;; helpers
