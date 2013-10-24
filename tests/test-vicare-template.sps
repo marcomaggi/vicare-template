@@ -180,27 +180,27 @@
 ;;;
 
   (check-for-procedure-argument-violation
-   (let ((S 123))
-     (with-arguments-validation (who)
-	 ((template-alpha	S))
-       #t))
-   '(123))
+      (let ((S 123))
+	(with-arguments-validation (who)
+	    ((template-alpha	S))
+	  #t))
+    => (list who '(123)))
 
   (check-for-procedure-argument-violation
-   (let ((S 123))
-     (with-arguments-validation (who)
-	 ((template-alpha/alive	S))
-       #t))
-   '(123))
+      (let ((S 123))
+	(with-arguments-validation (who)
+	    ((template-alpha/alive	S))
+	  #t))
+    => (list who '(123)))
 
   (let ((S (template-alpha-initialise)))
     (check-for-procedure-argument-violation
-     (begin
-       (template-alpha-finalise S)
-       (with-arguments-validation (who)
-	   ((template-alpha/alive	S))
-	 #t))
-     (list S)))
+	(begin
+	  (template-alpha-finalise S)
+	  (with-arguments-validation (who)
+	      ((template-alpha/alive	S))
+	    #t))
+      => (list who (list S))))
 
   (collect))
 

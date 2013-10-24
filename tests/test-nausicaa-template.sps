@@ -185,12 +185,12 @@
 
   (let (((S <template-alpha>) (<template-alpha> ())))
     (check-for-procedure-argument-violation
-     (begin
-       (S finalise)
-       (with-arguments-validation (who)
-	   ((<template-alpha>/alive	S))
-	 #t))
-     (list S)))
+	(begin
+	  (S finalise)
+	  (with-arguments-validation (who)
+	      ((<template-alpha>/alive	S))
+	    #t))
+      => (list who (list S))))
 
   (collect))
 
