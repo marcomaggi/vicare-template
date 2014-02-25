@@ -10,7 +10,7 @@ AC_CONFIG_AUX_DIR([autotools])
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE([-Wall foreign dist-xz no-dist-gzip])
+AM_INIT_AUTOMAKE([-Wall foreign subdir-objects dist-xz no-dist-gzip])
 AM_MAINTAINER_MODE
 
 AC_PROG_CC
@@ -24,6 +24,17 @@ LT_PREREQ([2.4])
 LT_INIT([shared disable-static])
 
 VICARE_SCHEME
+VICARE_CHECK_LIBRARY([VICARE],[(vicare (0 (>= 4)))],,[AC_MSG_ERROR([wrong version of (vicare)],1)])
+
+# Command  line  options  for  the executable  "vicare".   The  variable
+# AX_VFLAGS is  for options preselected by  the building infrastructure.
+# The variable VFLAGS  is for user options selected on  the command line
+# of "configure" and "make", for example:
+#
+#    $ make VFLAGS="-g --print-loaded-libraries"
+#
+AS_VAR_SET(AX_VFLAGS,["-O2 --verbose"])
+AS_VAR_SET_IF(VFLAGS,,[AS_VAR_SET(VFLAGS)])
 
 VICARE_OPTION_DEBUGGING_MODE
 VICARE_OPTION_NAUSICAA([check])
@@ -72,12 +83,7 @@ dnl AC_CHECK_FUNCS([template_version])
 VICARE_OUTPUT
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile]
-        [src/Makefile]
-        [doc/Makefile]
-        [tests/Makefile]
-        [lib/Makefile]
-        [lib/vicare/category/template/constants.sls]
-        [meta/slackware/doinst.sh])
+   [lib/vicare/category/template/constants.sls])
 AC_OUTPUT
 
 ### end of file

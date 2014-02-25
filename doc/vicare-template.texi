@@ -33,7 +33,7 @@
 
 @c To be used as @value{COPYRIGHT_YEARS} whenever we need to include the
 @c list of copyright years.
-@set COPYRIGHT_YEARS            2013
+@set COPYRIGHT_YEARS            2013, 2014
 
 @c ------------------------------------------------------------
 
@@ -230,21 +230,6 @@ the library @library{vicare category template}.
 Scheme libraries are installed under the directory:
 
 @center @file{$(libdir)/vicare-scheme}
-
-After installation, under the directory:
-
-@center @file{$(libexecdir)/@value{PACKAGE_NICKNAME}}
-
-@noindent
-a script @file{compile-all.sps} can be executed to precompile the
-installed libraries; for example:
-
-@example
-$ sudo vicare \
-   --fasl-directory /var/cache/vicare-scheme \
-   --compile-dependencies \
-      /usr/local/libexec/vicare-template/compile-all.sps
-@end example
 
 This document contains only a brief description of the functions: refer
 to the @value{FOREIGN_PACKAGE}'s documentation for details.
