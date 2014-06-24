@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-ACLOCAL_AMFLAGS		= -I autotools
+ACLOCAL_AMFLAGS		= -I meta/autotools
 AUTOMAKE_OPTIONS	= foreign
 EXTRA_DIST		= INSTALL configure.sh
 
@@ -23,6 +23,8 @@ doc_vicare_template_TEXINFOS	= doc/fdl-1.3.texi doc/gpl-3.0.texi doc/macros.texi
 
 #page
 #### C language library
+
+AM_CFLAGS		= -Wall
 
 vicare_template_CURRENT	= @vicare_template_VERSION_INTERFACE_CURRENT@
 vicare_template_REVISION= @vicare_template_VERSION_INTERFACE_REVISION@

@@ -5,12 +5,12 @@ AC_PREREQ([2.68])
 AC_INIT([Vicare/Template],[0.1d0],[marco.maggi-ipsu@poste.it],
   [vicare-template],[http://marcomaggi.github.com/vicare.html])
 AC_CONFIG_SRCDIR([src])
-AC_CONFIG_MACRO_DIR([autotools])
-AC_CONFIG_AUX_DIR([autotools])
+AC_CONFIG_MACRO_DIR([meta/autotools])
+AC_CONFIG_AUX_DIR([meta/autotools])
 AC_CANONICAL_BUILD
 AC_CANONICAL_HOST
 AC_CANONICAL_TARGET
-AM_INIT_AUTOMAKE([-Wall foreign subdir-objects dist-xz no-dist-gzip])
+AM_INIT_AUTOMAKE([foreign subdir-objects dist-xz no-dist-gzip])
 AM_MAINTAINER_MODE
 
 AC_PROG_CC
