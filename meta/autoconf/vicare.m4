@@ -12,6 +12,27 @@ AC_DEFUN([VICARE_OUTPUT],
 dnl page
 dnl Configuration options.
 
+dnl Wrapper for AC_ARG_ENABLE which adds  verbose messages and defines a
+dnl shell variable "vicare_enable_$1" set to "yes" or "no".
+dnl
+dnl $1 - upper case option name
+dnl $2 - command line option name "--enable-$2"
+dnl $3 - default (yes, no)
+dnl $4 - text for the "checking option... " message
+dnl $5 - text for the "enable option... " message
+AC_DEFUN([VICARE_ENABLE_OPTION],
+  [vicare_enable_$1=$3
+   AC_MSG_CHECKING([$4])
+   AC_ARG_ENABLE([$2],
+     [AS_HELP_STRING([--enable-$2],
+        [$5 (default is $3)])],
+     [AS_CASE([$enableval],
+        [yes],[vicare_enable_$1=yes],
+        [no], [vicare_enable_$1=no],
+        [AC_MSG_ERROR([bad value $enableval for --enable-$2])])],
+     [vicare_enable_$1=$3])
+   AC_MSG_RESULT([$vicare_enable_$1])])
+
 AC_DEFUN([VICARE_OPTION_DEBUGGING_MODE],
   [VICARE_DEBUG=no
    AC_MSG_CHECKING([whether debugging features are included in compiled Scheme libraries])

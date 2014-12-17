@@ -43,6 +43,12 @@ AM_CONDITIONAL([WANT_NAUSICAA],[test x$vicare_with_nausicaa = xyes])
 AM_CONDITIONAL([WANT_VICARE_DEBUG],[test x$VICARE_DEBUG = xyes])
 AM_COND_IF([WANT_VICARE_DEBUG],[AS_VAR_SET(VFLAGS,"$VFLAGS -g")])
 
+VICARE_ENABLE_OPTION([INSTALL_SOURCES],[sources-installation],[no],
+  [whether to install source Scheme libraries],
+  [enable installation of source Scheme libraries])
+AM_CONDITIONAL([WANT_INSTALL_SOURCES],
+  [test "x$vicare_enable_INSTALL_SOURCES" = xyes])
+
 AC_LANG([C])
 AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 
