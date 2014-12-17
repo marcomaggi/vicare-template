@@ -25,11 +25,12 @@
 ;;;
 
 
-#!r6rs
+#!vicare
 (import (nausicaa)
   (nausicaa category template)
   (vicare arguments validation)
   (vicare checks))
+(options tagged-language)
 
 (check-set-mode! 'report-failed)
 (check-display "*** testing Vicare Template bindings: Nausicaa API\n")
@@ -68,29 +69,29 @@
 ;;; --------------------------------------------------------------------
 
   (check	;this will be garbage collected
-      (let (((A <template-alpha>) (<template-alpha> ())))
+      (let (({A <template-alpha>} (<template-alpha> ())))
 	;;;(debug-print A)
 	(is-a? A <template-alpha>))
     => #t)
 
   (check
-      (let (((A <template-alpha>) (<template-alpha> ())))
+      (let (({A <template-alpha>} (<template-alpha> ())))
 	(A alive?))
     => #t)
 
   (check	;single finalisation
-      (let (((A <template-alpha>) (<template-alpha> ())))
+      (let (({A <template-alpha>} (<template-alpha> ())))
   	(A finalise))
     => #f)
 
   (check	;double finalisation
-      (let (((A <template-alpha>) (<template-alpha> ())))
+      (let (({A <template-alpha>} (<template-alpha> ())))
   	(A finalise)
   	(A finalise))
     => #f)
 
   (check	;alive predicate after finalisation
-      (let (((A <template-alpha>) (<template-alpha> ())))
+      (let (({A <template-alpha>} (<template-alpha> ())))
   	(A finalise)
   	(A alive?))
     => #f)
@@ -100,7 +101,7 @@
 
   (check
       (with-result
-       (let (((A <template-alpha>) (<template-alpha> ())))
+       (let (({A <template-alpha>} (<template-alpha> ())))
 	 (set! (A destructor) (lambda (A)
 				(add-result 123)))
 	 (A finalise)))
@@ -110,13 +111,13 @@
 ;;; hash
 
   (check-for-true
-   (let (((V <template-alpha>) (<template-alpha> ())))
+   (let (({V <template-alpha>} (<template-alpha> ())))
      (integer? (V hash))))
 
   (check
       (let ((A (<template-alpha> ()))
 	    (B (<template-alpha> ()))
-	    (T (make-hashtable (lambda ((V <template-alpha>))
+	    (T (make-hashtable (lambda ({V <template-alpha>})
 				 (V hash))
 			       eq?)))
 	(hashtable-set! T A 1)
@@ -129,30 +130,30 @@
 ;;; properties
 
   (check
-      (let (((S <template-alpha>) (<template-alpha> ())))
+      (let (({S <template-alpha>} (<template-alpha> ())))
 	(S property-list))
     => '())
 
   (check
-      (let (((S <template-alpha>) (<template-alpha> ())))
+      (let (({S <template-alpha>} (<template-alpha> ())))
 	(S putprop 'ciao 'salut)
 	(S getprop 'ciao))
     => 'salut)
 
   (check
-      (let (((S <template-alpha>) (<template-alpha> ())))
+      (let (({S <template-alpha>} (<template-alpha> ())))
 	(S getprop 'ciao))
     => #f)
 
   (check
-      (let (((S <template-alpha>) (<template-alpha> ())))
+      (let (({S <template-alpha>} (<template-alpha> ())))
 	(S putprop 'ciao 'salut)
 	(S remprop 'ciao)
 	(S getprop 'ciao))
     => #f)
 
   (check
-      (let (((S <template-alpha>) (<template-alpha> ())))
+      (let (({S <template-alpha>} (<template-alpha> ())))
 	(S putprop 'ciao 'salut)
 	(S putprop 'hello 'ohayo)
 	(list (S getprop 'ciao)
@@ -163,27 +164,27 @@
 ;;; arguments validation
 
   (check-for-true
-   (let (((S <template-alpha>) (<template-alpha> ())))
+   (let (({S <template-alpha>} (<template-alpha> ())))
      (with-arguments-validation (who)
 	 ((<template-alpha>	S))
        #t)))
 
   (check-for-true
-   (let (((S <template-alpha>) (<template-alpha> ())))
+   (let (({S <template-alpha>} (<template-alpha> ())))
      (S finalise)
      (with-arguments-validation (who)
 	 ((<template-alpha>	S))
        #t)))
 
   (check-for-true
-   (let (((S <template-alpha>) (<template-alpha> ())))
+   (let (({S <template-alpha>} (<template-alpha> ())))
      (with-arguments-validation (who)
 	 ((<template-alpha>/alive	S))
        #t)))
 
 ;;;
 
-  (let (((S <template-alpha>) (<template-alpha> ())))
+  (let (({S <template-alpha>} (<template-alpha> ())))
     (check-for-procedure-argument-violation
 	(begin
 	  (S finalise)

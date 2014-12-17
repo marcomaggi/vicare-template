@@ -25,9 +25,9 @@
 ;;;
 
 
-#!r6rs
+#!vicare
 (library (nausicaa category template)
-  (options visit-upon-loading)
+  (options visit-upon-loading tagged-language)
   (export
 
     ;; version numbers and strings
@@ -55,7 +55,7 @@
 ;;; common objects stuff
 
   (virtual-fields
-   (mutable (destructor <procedure>)
+   (mutable {destructor <procedure>}
 	    template-alpha-custom-destructor
 	    set-template-alpha-custom-destructor!))
 
