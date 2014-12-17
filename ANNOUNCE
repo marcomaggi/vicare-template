@@ -1,4 +1,4 @@
-Subject: [announce] Vicare/Template revision 0.1d0
+Subject: [announce] Vicare/Template revision 0.4d0
 
 			    Vicare/Template
 			    ===============
@@ -31,6 +31,13 @@ and as backup at:
 tested Template version 1.2.3; the Template library is available at:
 
 		   <http://template.sourceforge.net/>
+
+
+Notes for revision 0.4d0
+------------------------
+
+* Beginning with  this version this  package depends upon  Vicare Scheme
+  0.4.
 
 
 Notes for revision 0.1d0
