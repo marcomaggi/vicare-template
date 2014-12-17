@@ -5,7 +5,7 @@
 
 (define-constant INCLUDE-LIBRARY-BUILD-HIERARCHIES
   '((vicare category template)
-    (nausicaa cateory template)))
+    (nausicaa category template)))
 
 (define-constant INCLUDE-LIBRARY-DEPENDENCIES-HIERARCHIES
   '())

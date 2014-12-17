@@ -17,7 +17,9 @@ fi
     --prefix="${prefix}"                        \
     --libdir="${libdir}"			\
     --enable-debug                              \
+    --with-nausicaa				\
     CFLAGS='-O3'				\
+    VFLAGS='-O3'				\
     "$@"
 
 ### end of file

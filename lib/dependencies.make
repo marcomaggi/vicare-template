@@ -61,6 +61,23 @@ dist_lib_vicare_category_template_features_sls_DATA = lib/vicare/category/templa
 endif
 CLEANFILES += lib/vicare/category/template/features.fasl
 
+lib/nausicaa/category/template.fasl: \
+		lib/nausicaa/category/template.vicare.sls \
+		lib/vicare/category/template.fasl \
+		$(FASL_PREREQUISITES)
+	$(VICARE_COMPILE_RUN) --output $@ --compile-library $<
+
+if WANT_NAUSICAA
+lib_nausicaa_category_template_fasldir = $(bundledlibsdir)/nausicaa/category
+lib_nausicaa_category_template_vicare_slsdir  = $(bundledlibsdir)/nausicaa/category
+nodist_lib_nausicaa_category_template_fasl_DATA = lib/nausicaa/category/template.fasl
+if WANT_INSTALL_SOURCES
+dist_lib_nausicaa_category_template_vicare_sls_DATA = lib/nausicaa/category/template.vicare.sls
+endif
+EXTRA_DIST += lib/nausicaa/category/template.vicare.sls
+CLEANFILES += lib/nausicaa/category/template.fasl
+endif
+
 
 ### end of file
 # Local Variables:
