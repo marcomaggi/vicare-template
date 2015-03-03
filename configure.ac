@@ -52,6 +52,14 @@ AM_CONDITIONAL([WANT_INSTALL_SOURCES],
 AC_LANG([C])
 AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 
+VICARE_ENABLE_OPTION([TIME_TESTS],[time-tests],[no],
+  [whether to enable timing of tests],
+  [enable timing of tests])
+AM_CONDITIONAL([WANT_TIME_TESTS],[test "x$vicare_enable_TIME_TESTS" = xyes])
+
+AM_COND_IF([WANT_TIME_TESTS],
+  [AC_CHECK_PROG([TIME_PROGRAM],[time],[time],[:])])
+
 #page
 #### template configuration
 

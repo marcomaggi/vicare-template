@@ -41,31 +41,31 @@ libvicare_template_la_SOURCES	= \
 #page
 #### libraries
 
-VICARE_COMPILE_LIBRARY_PATH	= $(fasldir):$(slsdir):$(VICARE_LIBRARY_PATH)
-VICARE_COMPILE_FASL_PATH	= $(fasldir):$(VICARE_FASL_PATH)
-VICARE_COMPILE_LD_PATH		= $(builddir)/.libs
+VICARE_COMPILE_SOURCE_PATH	= $(fasldir):$(slsdir)
+VICARE_COMPILE_LIBRARY_PATH	= $(fasldir):$(VICARE_LIBRARY_PATH)
+VICARE_COMPILE_LD_PATH		= $(builddir)/.libs:$(LD_LIBRARY_PATH)
+VICARE_COMPILE_DYLD_PATH	= $(builddir)/.libs:$(DYLD_LIBRARY_PATH)
 
 VICARE_COMPILE_ENV	= \
+	VICARE_SOURCE_PATH=$(VICARE_COMPILE_SOURCE_PATH);	export VICARE_SOURCE_PATH;	\
 	VICARE_LIBRARY_PATH=$(VICARE_COMPILE_LIBRARY_PATH);	export VICARE_LIBRARY_PATH;	\
-	VICARE_FASL_PATH=$(VICARE_COMPILE_FASL_PATH);		export VICARE_FASL_PATH;	\
 	LD_LIBRARY_PATH=$(VICARE_COMPILE_LD_PATH);		export LD_LIBRARY_PATH;		\
-	DYLD_LIBRARY_PATH=$(VICARE_COMPILE_LD_PATH);		export DYLD_LIBRARY_PATH;
-VICARE_COMPILE_FLAGS	= --fasl-directory $(fasldir) $(AX_VFLAGS) $(VFLAGS)
-VICARE_COMPILE_RUN	= $(VICARE_COMPILE_ENV) vicare $(VICARE_COMPILE_FLAGS)
+	DYLD_LIBRARY_PATH=$(VICARE_COMPILE_DYLD_PATH);		export DYLD_LIBRARY_PATH;
+VICARE_COMPILE_FLAGS	= $(AX_VFLAGS) $(VFLAGS) \
+			  --library-locator compile-time --store-directory $(fasldir)
+VICARE_COMPILE_RUN	= $(VICARE_COMPILE_ENV) $(VICARE) $(VICARE_COMPILE_FLAGS)
 
 FASL_PREREQUISTES	= $(lib_LTLIBRARIES)
 
 ## --------------------------------------------------------------------
 
 BUILT_SOURCES		+= lib/vicare/category/template/features.sls
-
+CLEANFILES		+= lib/vicare/category/template/features.sls
 noinst_PROGRAMS		= features
 features_SOURCES	= lib/features.c
 
 lib/vicare/category/template/features.sls : features
 	$(MKDIR_P) lib/vicare/category && ./features >$@
-
-CLEANFILES += lib/vicare/category/template/features.sls
 
 ## --------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ EXTRA_DIST += \
 
 VICARE_BUILD_DEPS	= \
 	$(VICARE_COMPILE_RUN) \
-		-L $(testdir) --print-loaded-libraries --library-locator source \
+		--source-path $(testdir) --print-loaded-libraries --library-locator source \
 		--r6rs-script $(srcdir)/scripts/build-makefile-rules.sps --
 
 .PHONY: dependencies
@@ -96,7 +96,8 @@ include $(top_srcdir)/lib/dependencies.make
 .PHONY: clean-fasl
 
 clean-fasl:
-	find $(fasldir) -name \*.fasl -execdir rm -v '{}' ';'
+	find $(fasldir)        -name \*.fasl -execdir rm -v '{}' ';'
+	find $(builddir)/tests -name \*.fasl -execdir rm -v '{}' ';'
 
 #page
 #### running the test suite: test files selection
@@ -123,89 +124,124 @@ VICARE_SELECTED_TESTS		= $(testdir)/test-*$(file)*.sps
 VICARE_SELECTED_DEMOS		= $(testdir)/demo-*$(file)*.sps
 
 #page
-#### running the test suite: recipes
-
-VICARE_TEST_FASL_PATH	= $(fasldir):$(VICARE_FASL_PATH)
-VICARE_TEST_SEARCH_PATH	= $(testdir):$(slsdir):$(fasldir)
-VICARE_TEST_LD_PATH	= $(builddir)/.libs:$(LD_LIBRARY_PATH)
-VICARE_TEST_DYLD_PATH	= $(builddir)/.libs:$(DYLD_LIBRARY_PATH)
-
-VICARE_TEST_FLAGS	= $(AX_VFLAGS) $(VFLAGS) --r6rs-script
-VICARE_TEST_ENV		= \
-	VICARE_LIBRARY_PATH=$(VICARE_TEST_SEARCH_PATH);	export VICARE_LIBRARY_PATH;	\
-	VICARE_FASL_PATH=$(VICARE_TEST_FASL_PATH);	export VICARE_FASL_PATH;	\
-	CHECK_TEST_NAME=$(name);			export CHECK_TEST_NAME;		\
-	LD_LIBRARY_PATH=$(VICARE_TEST_LD_PATH);		export LD_LIBRARY_PATH;		\
-	DYLD_LIBRARY_PATH=$(VICARE_TEST_DYLD_PATH);	export DYLD_LIBRARY_PATH;
-VICARE_TEST_RUN		= $(VICARE_TEST_ENV) $(GDB) $(VICARE) $(VICARE_TEST_FLAGS)
-
-## --------------------------------------------------------------------
-## interface to "make check"
-
+#### interface to "make check"
+#
 # Read "Parallel Test Harness" in the documentation of GNU Automake to
 # understand how to use this interface for "make check".
 #
+
+VICARE_CHECK_LIBRARY_PATH	= $(fasldir):$(VICARE_LIBRARY_PATH)
+VICARE_CHECK_SOURCE_PATH	= $(testdir):$(slsdir):$(fasldir)
+VICARE_CHECK_LD_PATH		= $(builddir)/.libs:$(LD_LIBRARY_PATH)
+VICARE_CHECK_DYLD_PATH		= $(builddir)/.libs:$(DYLD_LIBRARY_PATH)
+
+VICARE_CHECK_FLAGS		= $(AX_VFLAGS) $(VFLAGS) --r6rs-script
+VICARE_CHECK_ENV		= \
+	VICARE_CHECK_QUIET=yes;					export VICARE_CHECK_QUIET;	\
+	VICARE_SOURCE_PATH=$(VICARE_CHECK_SOURCE_PATH);		export VICARE_SOURCE_PATH;	\
+	VICARE_LIBRARY_PATH=$(VICARE_CHECK_LIBRARY_PATH);	export VICARE_LIBRARY_PATH;	\
+	CHECK_TEST_NAME=$(name);				export CHECK_TEST_NAME;		\
+	VICARE_SRC_DIR=$(srcdir)/tests;				export VICARE_SRC_DIR;		\
+	VICARE_BUILDDIR=$(builddir);				export VICARE_BUILDDIR;		\
+	LD_LIBRARY_PATH=$(VICARE_CHECK_LD_PATH);		export LD_LIBRARY_PATH;		\
+	DYLD_LIBRARY_PATH=$(VICARE_CHECK_DYLD_PATH);		export DYLD_LIBRARY_PATH;
+
 # We must make sure that this ends with a semicolon!!!
-AM_TESTS_ENVIRONMENT	= VICARE_CHECK_QUIET=yes; export VICARE_CHECK_QUIET; $(VICARE_TEST_ENV)
+AM_TESTS_ENVIRONMENT	= $(VICARE_CHECK_ENV)
 TEST_EXTENSIONS		= .sps
 SPS_LOG_COMPILER	= $(VICARE)
-AM_SPS_LOG_FLAGS	= $(AX_VFLAGS) $(VFLAGS)
-
-## --------------------------------------------------------------------
-
-.PHONY: test tests demo demos
-
-test tests:
-	@echo
-	@for f in $(VICARE_SELECTED_TESTS); do $(VICARE_TEST_RUN) $$f; done
-	@echo
-
-demo demos:
-	@echo
-	@for f in $(VICARE_SELECTED_DEMOS); do $(VICARE_TEST_RUN) $$f; done
-	@echo
+AM_SPS_LOG_FLAGS	= $(VICARE_CHECK_FLAGS)
 
 #page
-#### interface to "make installcheck"
+#### interface to "make instcheck"
 
-VICARE_INSTCHECK_LIBRARY_PATH	= $(DESTDIR)$(bundledlibsdir):$(VICARE_LIBRARY_PATH)
-VICARE_INSTCHECK_FASL_PATH	= $(DESTDIR)$(bundledlibsdir):$(VICARE_FASL_PATH)
-VICARE_INSTCHECK_LD_PATH	= $(DESTDIR)$(libdir):$(LD_LIBRARY_PATH)
-VICARE_INSTCHECK_DYLD_PATH	= $(DESTDIR)$(libdir):$(DYLD_LIBRARY_PATH)
+VICARE_INSTCHECK_SOURCE_PATH	= $(DESTDIR)$(bundledlibsdir):$(testdir)
+VICARE_INSTCHECK_LD_PATH	= $(DESTDIR)$(libdir)
+VICARE_INSTCHECK_DYLD_PATH	= $(DESTDIR)$(libdir)
 
 VICARE_INSTCHECK_FLAGS	= --print-loaded-libraries $(AX_VFLAGS) $(VFLAGS)
 VICARE_INSTCHECK_ENV	= \
-	VICARE_LIBRARY_PATH=$(VICARE_INSTCHECK_LIBRARY_PATH);	export VICARE_LIBRARY_PATH;	\
-	VICARE_FASL_PATH=$(VICARE_INSTCHECK_FASL_PATH);		export VICARE_FASL_PATH;	\
+	VICARE_SOURCE_PATH=$(VICARE_INSTCHECK_SOURCE_PATH);	export VICARE_SOURCE_PATH;	\
 	LD_LIBRARY_PATH=$(VICARE_INSTCHECK_LD_PATH);		export LD_LIBRARY_PATH;		\
 	DYLD_LIBRARY_PATH=$(VICARE_INSTCHECK_DYLD_PATH);	export DYLD_LIBRARY_PATH;	\
-	VICARE_SRC_DIR=$(srcdir);				export VICARE_SRC_DIR;		\
+	VICARE_SRC_DIR=$(srcdir)/tests;				export VICARE_SRC_DIR;		\
 	VICARE_CHECK_QUIET=no;					export VICARE_CHECK_QUIET;
-VICARE_INSTCHECK_RUN	= $(VICARE_INSTCHECK_ENV) $(VICARE) $(VICARE_INSTCHECK_FLAGS)
+VICARE_INSTCHECK_RUN	= \
+	$(VICARE_INSTCHECK_ENV) $(VICARE) $(VICARE_INSTCHECK_FLAGS)
 
 installcheck-local:
 	@for f in $(TESTS); do $(VICARE_INSTCHECK_RUN) $(srcdir)/$$f; done
 
 #page
-#### running vicare with the path for loading libraries
+#### running the test suite: customised test rules
 
-VICARE_TERMINAL_FASL_PATH	= $(fasldir):$(VICARE_FASL_PATH)
-VICARE_TERMINAL_SEARCH_PATH	= $(testdir):$(slsdir):$(fasldir)
+VICARE_TEST_SELECTED_TESTS		= $(testdir)/test-*$(file)*.sps
+VICARE_TEST_SELECTED_DEMOS		= $(testdir)/demo-*$(file)*.sps
+
+VICARE_TEST_LIBRARY_PATH		= $(fasldir):$(VICARE_LIBRARY_PATH)
+VICARE_TEST_SOURCE_PATH			= $(testdir):$(slsdir):$(fasldir)
+VICARE_TEST_LD_PATH			= $(builddir)/.libs:$(LD_LIBRARY_PATH)
+VICARE_TEST_DYLD_PATH			= $(builddir)/.libs:$(DYLD_LIBRARY_PATH)
+
+# Enable timing  of test files  execution.  We cannot include  this in
+# the separator because it needs  to be placed between the environment
+# variables and the actual command line.
+if WANT_TIME_TESTS
+VICARE_TIME_TESTS	= $(TIME_PROGRAM) -p
+endif
+
+VICARE_TEST_FLAGS	= $(AX_VFLAGS) $(VFLAGS) --r6rs-script
+VICARE_TEST_ENV		= \
+	VICARE_SOURCE_PATH=$(VICARE_TEST_SOURCE_PATH);		export VICARE_SOURCE_PATH;	\
+	VICARE_LIBRARY_PATH=$(VICARE_TEST_LIBRARY_PATH);	export VICARE_LIBRARY_PATH;	\
+	CHECK_TEST_NAME=$(name);				export CHECK_TEST_NAME;		\
+	VICARE_SRC_DIR=$(srcdir)/tests;				export VICARE_SRC_DIR;		\
+	VICARE_BUILDDIR=$(builddir);				export VICARE_BUILDDIR;		\
+	LD_LIBRARY_PATH=$(VICARE_TEST_LD_PATH);			export LD_LIBRARY_PATH;		\
+	DYLD_LIBRARY_PATH=$(VICARE_TEST_DYLD_PATH);		export DYLD_LIBRARY_PATH;
+VICARE_TEST_RUN		= $(VICARE_TEST_ENV) $(VICARE_TIME_TESTS) $(GDB) $(VICARE) $(VICARE_TEST_FLAGS)
+
+## --------------------------------------------------------------------
+
+.PHONY: test tests
+.PHONY: demo demos
+
+test tests:
+	@echo
+	@for f in $(VICARE_TEST_SELECTED_TESTS); do $(VICARE_TEST_RUN) $$f; done
+	@echo
+
+demo demos:
+	@echo
+	@for f in $(VICARE_TEST_SELECTED_DEMOS); do $(VICARE_TEST_RUN) $$f; done
+	@echo
+
+#page
+#### running vicare on the terminal from the build directory
+
+RLWRAP_TRAMPOLINE	= $(srcdir)/scripts/rlwrap-trampoline
+EXTRA_DIST		+= $(RLWRAP_TRAMPOLINE)
+
+VICARE_TERMINAL_LIBRARY_PATH	= $(fasldir):$(VICARE_LIBRARY_PATH)
+VICARE_TERMINAL_SOURCE_PATH	= $(slsdir)
 VICARE_TERMINAL_LD_PATH		= $(builddir)/.libs:$(LD_LIBRARY_PATH)
 VICARE_TERMINAL_DYLD_PATH	= $(builddir)/.libs:$(DYLD_LIBRARY_PATH)
 
-VICARE_TERMINAL_RUN_FLAGS	= --print-loaded-libraries $(AX_VFLAGS) $(VFLAGS)
+VICARE_TERMINAL_RUN_FLAGS	= $(AX_VFLAGS) $(VFLAGS)
 VICARE_TERMINAL_RUN_ENV		= \
-	VICARE_FASL_PATH=$(VICARE_TERMINAL_FASL_PATH);		export VICARE_FASL_PATH;	\
-	VICARE_LIBRARY_PATH=$(VICARE_TERMINAL_SEARCH_PATH);	export VICARE_LIBRARY_PATH;	\
+	VICARE_LIBRARY_PATH=$(VICARE_TERMINAL_LIBRARY_PATH);	export VICARE_LIBRARY_PATH;	\
+	VICARE_SOURCE_PATH=$(VICARE_TERMINAL_SOURCE_PATH);	export VICARE_SOURCE_PATH;	\
 	VICARE_SRC_DIR=$(srcdir);				export VICARE_SRC_DIR;		\
 	VICARE_BUILDDIR=$(builddir);				export VICARE_BUILDDIR;		\
 	LD_LIBRARY_PATH=$(VICARE_TERMINAL_LD_PATH);		export LD_LIBRARY_PATH;		\
 	DYLD_LIBRARY_PATH=$(VICARE_TERMINAL_DYLD_PATH);		export DYLD_LIBRARY_PATH;
 VICARE_TERMINAL_RUN	= $(VICARE_TERMINAL_RUN_ENV) $(VICARE) $(VICARE_TERMINAL_RUN_FLAGS)
-VICARE_TERMINAL_VIE	= $(VICARE_TERMINAL_RUN_ENV) vie $(VICARE_TERMINAL_RUN_FLAGS)
 
-.PHONY: test-vie test-run
+VICARE_TERMINAL_VIE_FLAGS	=  --raw-repl $(VICARE_TERMINAL_RUN_FLAGS)
+VICARE_TERMINAL_VIE_ENV	= $(VICARE_TERMINAL_RUN_ENV)
+VICARE_TERMINAL_VIE	= $(VICARE_TERMINAL_VIE_ENV) $(RLWRAP_TRAMPOLINE) $(VICARE) $(VICARE_TERMINAL_VIE_FLAGS)
+
+.PHONY: test-run test-vie
 
 test-run:
 	$(VICARE_TERMINAL_RUN)
