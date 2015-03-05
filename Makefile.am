@@ -52,7 +52,7 @@ VICARE_COMPILE_ENV	= \
 	LD_LIBRARY_PATH=$(VICARE_COMPILE_LD_PATH);		export LD_LIBRARY_PATH;		\
 	DYLD_LIBRARY_PATH=$(VICARE_COMPILE_DYLD_PATH);		export DYLD_LIBRARY_PATH;
 VICARE_COMPILE_FLAGS	= $(AX_VFLAGS) $(VFLAGS) \
-			  --library-locator compile-time --store-directory $(fasldir)
+			  --library-locator compile-time --build-directory $(fasldir)
 VICARE_COMPILE_RUN	= $(VICARE_COMPILE_ENV) $(VICARE) $(VICARE_COMPILE_FLAGS)
 
 FASL_PREREQUISTES	= $(lib_LTLIBRARIES)
