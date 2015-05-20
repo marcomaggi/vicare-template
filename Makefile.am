@@ -59,12 +59,12 @@ FASL_PREREQUISTES	= $(lib_LTLIBRARIES)
 
 ## --------------------------------------------------------------------
 
-BUILT_SOURCES		+= lib/vicare/category/template/features.sls
-CLEANFILES		+= lib/vicare/category/template/features.sls
+BUILT_SOURCES		+= lib/vicare/category/template/features.vicare.sls
+CLEANFILES		+= lib/vicare/category/template/features.vicare.sls
 noinst_PROGRAMS		= features
 features_SOURCES	= lib/features.c
 
-lib/vicare/category/template/features.sls : features
+lib/vicare/category/template/features.vicare.sls : features
 	$(MKDIR_P) lib/vicare/category && ./features >$@
 
 ## --------------------------------------------------------------------
@@ -82,7 +82,7 @@ VICARE_BUILD_DEPS	= \
 
 .PHONY: dependencies
 
-dependencies: lib/vicare/category/template/features.sls
+dependencies: lib/vicare/category/template/features.vicare.sls
 	$(VICARE_BUILD_DEPS) $(slsdir)/libraries.scm >$(slsdir)/dependencies.make
 
 # NOTE This  INCLUDE directive is  processed by Automake.   To specify

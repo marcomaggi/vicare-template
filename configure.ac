@@ -100,7 +100,7 @@ dnl AC_CHECK_FUNCS([template_version])
 VICARE_OUTPUT
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile]
-   [lib/vicare/category/template/constants.sls])
+   [lib/vicare/category/template/constants.vicare.sls])
 AC_OUTPUT
 
 ### end of file
