@@ -77,7 +77,7 @@ EXTRA_DIST += \
 
 VICARE_BUILD_DEPS	= \
 	$(VICARE_COMPILE_RUN) \
-		--source-path $(testdir) --print-loaded-libraries --library-locator source \
+		--source-path $(testdir) --option print-loaded-libraries --library-locator source \
 		--r6rs-script $(srcdir)/scripts/build-makefile-rules.sps --
 
 .PHONY: dependencies
@@ -160,7 +160,7 @@ VICARE_INSTCHECK_SOURCE_PATH	= $(DESTDIR)$(bundledlibsdir):$(VICARE_SOURCE_PATH)
 VICARE_INSTCHECK_LD_PATH	= $(DESTDIR)$(libdir)
 VICARE_INSTCHECK_DYLD_PATH	= $(DESTDIR)$(libdir)
 
-VICARE_INSTCHECK_FLAGS	= --print-loaded-libraries $(AX_VFLAGS) $(VFLAGS)
+VICARE_INSTCHECK_FLAGS	= --option print-loaded-libraries $(AX_VFLAGS) $(VFLAGS)
 VICARE_INSTCHECK_ENV	= \
 	VICARE_LIBRARY_PATH=$(VICARE_INSTCHECK_LIBRARY_PATH);	export VICARE_LIBRARY_PATH;	\
 	VICARE_SOURCE_PATH=$(VICARE_INSTCHECK_SOURCE_PATH);	export VICARE_SOURCE_PATH;	\

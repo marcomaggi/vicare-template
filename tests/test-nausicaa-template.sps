@@ -8,7 +8,7 @@
 ;;;
 ;;;
 ;;;
-;;;Copyright (C) 2013, 2014 Marco Maggi <marco.maggi-ipsu@poste.it>
+;;;Copyright (C) 2013, 2014, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 ;;;
 ;;;This program is free software:  you can redistribute it and/or modify
 ;;;it under the terms of the  GNU General Public License as published by
@@ -26,11 +26,12 @@
 
 
 #!vicare
-(import (nausicaa)
-  (nausicaa category template)
-  (vicare arguments validation)
-  (vicare checks))
-(options tagged-language)
+(program (test)
+  (options tagged-language)
+  (import (nausicaa)
+    (nausicaa category template)
+    (vicare arguments validation)
+    (vicare checks))
 
 (check-set-mode! 'report-failed)
 (check-display "*** testing Vicare Template bindings: Nausicaa API\n")
@@ -199,5 +200,7 @@
 ;;;; done
 
 (check-report)
+
+#| end of program |# )
 
 ;;; end of file

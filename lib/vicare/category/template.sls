@@ -8,7 +8,7 @@
 ;;;
 ;;;
 ;;;
-;;;Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
+;;;Copyright (C) 2013, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 ;;;
 ;;;This program is free software:  you can redistribute it and/or modify
 ;;;it under the terms of the  GNU General Public License as published by
@@ -26,8 +26,8 @@
 
 
 #!vicare
-#!(load-shared-library "vicare-template")
 (library (vicare category template)
+  (foreign-library "vicare-template")
   (export
 
     ;; version numbers and strings

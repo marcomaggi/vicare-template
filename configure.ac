@@ -24,7 +24,10 @@ LT_PREREQ([2.4])
 LT_INIT([shared disable-static])
 
 VICARE_SCHEME
-VICARE_CHECK_LIBRARY([VICARE],[(vicare (0 (>= 4)))],,[AC_MSG_ERROR([wrong version of (vicare)],1)])
+VICARE_CHECK_LIBRARY([VICARE],
+  [(vicare (0 4 (>= 2015) (>= 5) (>= 19)))])
+AS_IF([test "$vicare_cv_schemelib_VICARE" = no],
+  [AC_MSG_ERROR([wrong Vicare version],1)])
 
 # Command  line  options  for  the executable  "vicare".   The  variable
 # AX_VFLAGS is  for options preselected by  the building infrastructure.
