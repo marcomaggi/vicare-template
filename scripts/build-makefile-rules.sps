@@ -4,7 +4,7 @@
 ;;
 ;;   $ ./vicare -b vicare.boot							\
 ;;	   --source-path $PWD/../lib --source-path $PWD/lib			\
-;;	   --print-loaded-libraries --library-locator source			\
+;;	   --option print-loaded-libraries --library-locator source		\
 ;;         --r6rs-script $(top_srcdir)/scripts/build-makefile-rules.sps		\
 ;;         --									\
 ;;         $(top_srcdir)/lib/libraries.scm >$(top_srcdir)/lib/dependencies.make
