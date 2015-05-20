@@ -128,7 +128,7 @@ on 64-bit platforms we should arrange such library to be:
 and "make" to add command line options to the execution of "vicare" when
 compiling libraries and running tests; for example:
 
-   $ make VFLAGS="-g -O2 --print-loaded-libraries"
+   $ make VFLAGS="-g -O2 --option print-loaded-libraries"
 
 
 4. Usage
