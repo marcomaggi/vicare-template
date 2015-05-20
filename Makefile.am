@@ -38,6 +38,10 @@ libvicare_template_la_SOURCES	= \
 	src/vicare-template-version.c		\
 	src/vicare-template-internals.h
 
+.PHONY: library
+
+library: $(lib_LTLIBRARIES)
+
 #page
 #### libraries
 
