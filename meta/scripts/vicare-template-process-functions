@@ -1,5 +1,19 @@
 ;;;!vicare
 ;;
+;;Automatically generate templates for foreign  functions interfacing.  First write a
+;;line-oriented text  file "input.txt" with  title in the  first line and  C language
+;;function names in the following lines:
+;;
+;;   initialisation and finalisation
+;;   foreign_init
+;;   foreign_final
+;;
+;;then:
+;;
+;;   $ vicare --r6rs-script vicare-template-process-functions <input.txt >output.txt
+;;
+;;finally copy and paste sections from the file "output.txt".
+;;
 
 #!r6rs
 (import (vicare)
@@ -164,7 +178,7 @@
       (let* ((fun		(car fun-list))
 	     (ikrt-name		(<fun>-ikrt-name   fun))
 	     (scheme-name	(<fun>-scheme-name fun)))
-	(printf "(define-inline (~a)\n  (foreign-call \"~a\"))\n\n"
+	(printf "(define-syntax-rule (~a)\n  (foreign-call \"~a\"))\n\n"
 		scheme-name ikrt-name))
       (loop (cdr fun-list)))))
 
@@ -230,16 +244,13 @@
     (unless (null? fun-list)
       (let* ((fun		(car fun-list))
 	     (scheme-name	(<fun>-scheme-name fun)))
-	(printf SCHEME-WRAPPER-TEMPLATE scheme-name scheme-name scheme-name))
+	(printf SCHEME-WRAPPER-TEMPLATE scheme-name scheme-name))
       (loop (cdr fun-list)))))
 
 (define-constant SCHEME-WRAPPER-TEMPLATE
   "\
-(define (~a ctx)
-  (define who '~a)
-  (with-arguments-validation (who)
-      ()
-    (capi.~a)))\n\n")
+(define* (~a ctx)
+  (capi.~a))\n\n")
 
 
 ;;;; cond-expand clauses
@@ -280,5 +291,5 @@
 
 ;;; end of file
 ;; Local Variables:
-;; mode: scheme
+;; mode: vicare
 ;; End:
