@@ -40,6 +40,8 @@ libvicare_template_la_SOURCES	= \
 
 .PHONY: vicare-c-library
 
+vicare-c-library: $(lib_LTLIBRARIES)
+
 #page
 #### libraries
 
