@@ -238,17 +238,17 @@ AC_DEFUN([VICARE_CHECK_LIBRARY],
        ;;ENVIRONMENT is classified as having no side effects,
        ;;so we have to make sure the compiler does not
        ;;remove it while optimising the program.
-       (define env
-          (with-exception-handler
-             (lambda (ex)
-               (display "no\n")
-               (flush-output-port (current-output-port))
-               (exit 1))
-             (lambda ()
-               (receive-and-return (env)
-                   (environment (quote $2))
-                 (display "yes\n")
-                 (flush-output-port (current-output-port))))))
+       (if (environment?
+              (with-exception-handler
+                  (lambda (ex)
+                    (display "no\n")
+                    (flush-output-port (current-output-port))
+                    (exit 0))
+                (lambda ()
+                  (environment (quote $2)))))
+           (display "yes\n")
+         (display "no\n"))
+         (flush-output-port (current-output-port))
        (exit 0)],,
          [AS_VAR_SET([vicare_cv_schemelib_$1],[$vicare_ANSWER])
           AS_IF([test "$vicare_ANSWER" = yes],[vicare_cv_schemelib_$1=yes],[vicare_cv_schemelib_$1=no])])])])
