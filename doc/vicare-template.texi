@@ -33,7 +33,7 @@
 
 @c To be used as @value{COPYRIGHT_YEARS} whenever we need to include the
 @c list of copyright years.
-@set COPYRIGHT_YEARS            2013, 2014
+@set COPYRIGHT_YEARS            2013, 2014, 2015
 
 @c ------------------------------------------------------------
 
@@ -43,8 +43,8 @@
 @set FOREIGN_SCHEME_LIB         @library{vicare category template}
 @set NAUSICAA_SCHEME_LIB        @library{nausicaa category template}
 @set GITHUB_URL                 @url{http://github.com/marcomaggi/vicare-template}
-@set SOURCEFORGE_URL            @url{https://sourceforge.net/projects/vicare-template/}
-@set DOWNLOAD_URL               @url{https://sourceforge.net/projects/vicare-template/files/}
+@set BITBUCKET_URL            @url{https://bitbucket.org/marcomaggi/vicare-template}
+@set DOWNLOAD_URL               @url{https://bitbucket.org/marcomaggi/vicare-template/downloads}
 @set DOCUMENTATION_URL          @url{http://marcomaggi.github.io/docs/vicare-template.html}
 @set VICARE_HOMEPAGE_URL        @url{http://marcomaggi.github.io/vicare.html}
 
@@ -80,7 +80,7 @@ development takes place at:
 @noindent
 and as backup at:
 
-@center @value{SOURCEFORGE_URL}
+@center @value{BITBUCKET_URL}
 
 @noindent
 @value{FOREIGN_PACKAGE} is available at:
@@ -669,7 +669,7 @@ development takes place at:
 @noindent
 and as backup at:
 
-@center @value{SOURCEFORGE_URL}
+@center @value{BITBUCKET_URL}
 
 @noindent
 the home page of the Vicare project is at:
