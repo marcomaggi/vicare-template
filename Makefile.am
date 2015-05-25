@@ -59,7 +59,7 @@ VICARE_COMPILE_FLAGS	= $(AX_VFLAGS) $(VFLAGS) \
 			  --library-locator compile-time --build-directory $(fasldir)
 VICARE_COMPILE_RUN	= $(VICARE_COMPILE_ENV) $(VICARE) $(VICARE_COMPILE_FLAGS)
 
-FASL_PREREQUISTES	= $(lib_LTLIBRARIES)
+FASL_PREREQUISTES	= $(lib_LTLIBRARIES) $(libvicare_template_la_LINK)
 
 ## --------------------------------------------------------------------
 
