@@ -8,6 +8,7 @@ slsdir			= $(srcdir)/lib
 fasldir			= $(builddir)/lib
 testdir			= $(srcdir)/tests
 bundledlibsdir		= $(libdir)/vicare-scheme
+scriptsdir		= $(srcdir)/meta/scripts
 
 CLEANFILES		=
 MAINTAINERCLEANFILES	=
@@ -75,14 +76,14 @@ lib/vicare/category/template/features.vicare.sls : features
 
 EXTRA_DIST += \
 	lib/libraries.scm			\
-	scripts/build-makefile-rules.sps	\
-	scripts/compile-all.sps			\
-	scripts/compile-nausicaa.sps
+	$(scriptsdir)/build-makefile-rules.sps	\
+	$(scriptsdir)/compile-all.sps		\
+	$(scriptsdir)/compile-nausicaa.sps
 
 VICARE_BUILD_DEPS	= \
 	$(VICARE_COMPILE_RUN) \
 		--source-path $(testdir) --option print-loaded-libraries --library-locator source \
-		--r6rs-script $(srcdir)/scripts/build-makefile-rules.sps --
+		--r6rs-script $(scriptsdir)/build-makefile-rules.sps --
 
 .PHONY: dependencies
 
@@ -225,7 +226,7 @@ demo demos:
 #page
 #### running vicare on the terminal from the build directory
 
-RLWRAP_TRAMPOLINE	= $(srcdir)/scripts/rlwrap-trampoline
+RLWRAP_TRAMPOLINE	= $(scriptsdir)/rlwrap-trampoline
 EXTRA_DIST		+= $(RLWRAP_TRAMPOLINE)
 
 VICARE_TERMINAL_LIBRARY_PATH	= $(fasldir):$(VICARE_LIBRARY_PATH)
