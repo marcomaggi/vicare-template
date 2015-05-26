@@ -69,7 +69,7 @@ noinst_PROGRAMS		= features
 features_SOURCES	= lib/features.c
 
 lib/vicare/category/template/features.vicare.sls : features
-	$(MKDIR_P) lib/vicare/category && ./features >$@
+	$(MKDIR_P) lib/vicare/category/template && ./features >$@
 
 ## --------------------------------------------------------------------
 
