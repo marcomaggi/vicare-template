@@ -42,10 +42,10 @@
 @set FOREIGN_URL                @url{http:/@//@/www.gnu.org/@/software/@/template/@/}
 @set FOREIGN_SCHEME_LIB         @library{vicare category template}
 @set NAUSICAA_SCHEME_LIB        @library{nausicaa category template}
-@set GITHUB_URL                 @url{http://github.com/marcomaggi/vicare-template}
-@set BITBUCKET_URL            @url{https://bitbucket.org/marcomaggi/vicare-template}
-@set DOWNLOAD_URL               @url{https://bitbucket.org/marcomaggi/vicare-template/downloads}
-@set DOCUMENTATION_URL          @url{http://marcomaggi.github.io/docs/vicare-template.html}
+@set GITHUB_URL                 @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
+@set BITBUCKET_URL              @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}}
+@set DOWNLOAD_URL               @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}/downloads}
+@set DOCUMENTATION_URL          @url{http://marcomaggi.github.io/docs/@value{PACKAGE_NICKNAME}.html}
 @set VICARE_HOMEPAGE_URL        @url{http://marcomaggi.github.io/vicare.html}
 
 @macro templateref{NODE, TITLE}
