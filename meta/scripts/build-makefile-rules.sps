@@ -21,7 +21,7 @@
   (cadr (command-line)))
 
 (eval `(let ()
-	 (module (FROM-TEMPLATES-SOURCE-FILES
+	 (module (FROM-MODELS-SOURCE-FILES
 		  BUILT-SOURCE-FILES
 		  LIBRARIES-SPECS
 		  INCLUDE-LIBRARY-BUILD-HIERARCHIES
@@ -33,7 +33,7 @@
 		      ((include-library-build-hierarchies		INCLUDE-LIBRARY-BUILD-HIERARCHIES)
 		       (include-library-dependencies-hierarchies	INCLUDE-LIBRARY-DEPENDENCIES-HIERARCHIES)
 		       (include-install-rules				INCLUDE-INSTALL-RULES))
-		    (build-library-dependencies FROM-TEMPLATES-SOURCE-FILES
+		    (build-library-dependencies FROM-MODELS-SOURCE-FILES
 						BUILT-SOURCE-FILES
 						LIBRARIES-SPECS))
 		  stdout)
