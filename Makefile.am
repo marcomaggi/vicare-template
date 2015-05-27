@@ -25,7 +25,7 @@ doc_vicare_template_TEXINFOS	= doc/fdl-1.3.texi doc/gpl-3.0.texi doc/macros.texi
 #page
 #### C language library
 
-AM_CFLAGS		= -Wall
+AM_CFLAGS		= -I $(srcdir)/src -Wall
 
 vicare_template_CURRENT	= @vicare_template_VERSION_INTERFACE_CURRENT@
 vicare_template_REVISION= @vicare_template_VERSION_INTERFACE_REVISION@
