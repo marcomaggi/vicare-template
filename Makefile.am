@@ -88,6 +88,7 @@ VICARE_BUILD_DEPS	= \
 .PHONY: dependencies
 
 dependencies: lib/vicare/category/template/features.vicare.sls
+	$(MKDIR_P) $(fasldir)
 	$(VICARE_BUILD_DEPS) $(slsdir)/libraries.scm >$(slsdir)/dependencies.make
 
 # NOTE This  INCLUDE directive is  processed by Automake.   To specify
