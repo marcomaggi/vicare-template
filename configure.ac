@@ -22,12 +22,19 @@ AC_PROG_MAKE_SET
 AC_PROG_MKDIR_P
 LT_PREREQ([2.4])
 LT_INIT([shared disable-static])
+AC_LANG([C])
+AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 
 VICARE_SCHEME
 VICARE_CHECK_LIBRARY([VICARE],
-  [(vicare (0 4 (>= 2015) (>= 5) (>= 19)))])
+  [(vicare (0 4 (>= 2015) (>= 5) (>= 26)))])
 AS_IF([test "$vicare_cv_schemelib_VICARE" = no],
   [AC_MSG_ERROR([wrong Vicare version],1)])
+
+VICARE_CHECK_LIBRARY([VICARE_FFI],
+  [(vicare ffi (0 4 (>= 2015) (>= 05) (>= 27)))])
+AS_IF([test "$vicare_cv_schemelib_VICARE_FFI" = no],
+  [AC_MSG_ERROR([wrong Vicare FFI library version],1)])
 
 # Command  line  options  for  the executable  "vicare".   The  variable
 # AX_VFLAGS is  for options preselected by  the building infrastructure.
@@ -51,9 +58,6 @@ VICARE_ENABLE_OPTION([INSTALL_SOURCES],[sources-installation],[no],
   [enable installation of source Scheme libraries])
 AM_CONDITIONAL([WANT_INSTALL_SOURCES],
   [test "x$vicare_enable_INSTALL_SOURCES" = xyes])
-
-AC_LANG([C])
-AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 
 VICARE_ENABLE_OPTION([TIME_TESTS],[time-tests],[no],
   [whether to enable timing of tests],
