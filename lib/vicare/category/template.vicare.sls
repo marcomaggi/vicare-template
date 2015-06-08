@@ -55,10 +55,15 @@
 ;;; still to be implemented
 
     )
-  (import (vicare)
+  (import (vicare (or (0 4 2015 5 (>= 26))
+		      (0 4 2015 (>= 6))
+		      (0 4 (>= 2016))))
     (vicare category template constants)
     (prefix (vicare category template unsafe-capi) capi.)
-    #;(prefix (vicare ffi) ffi.)
+    #;(prefix (vicare ffi (or (0 4 2015 5 (>= 27))
+			    (0 4 2015 (>= 6))
+			    (0 4 (>= 2016))))
+	    ffi.)
     (prefix (vicare ffi foreign-pointer-wrapper) ffi.)
     (vicare arguments validation)
     #;(vicare arguments general-c-buffers)

@@ -27,12 +27,17 @@ AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 
 VICARE_SCHEME
 VICARE_CHECK_LIBRARY([VICARE],
-  [(vicare (0 4 (>= 2015) (>= 5) (>= 26)))])
+  [(vicare (or (0 4 2015 5 (>= 26))
+               (0 4 2015 (>= 6))
+               (0 4 (>= 2016))))])
 AS_IF([test "$vicare_cv_schemelib_VICARE" = no],
   [AC_MSG_ERROR([wrong Vicare version],1)])
 
 VICARE_CHECK_LIBRARY([VICARE_FFI],
-  [(vicare ffi (0 4 (>= 2015) (>= 05) (>= 27)))])
+  [(vicare ffi (or (0 4 2015 5 (>= 27))
+                   (0 4 2015 (>= 6))
+                   (0 4 (>= 2016))))])
+
 AS_IF([test "$vicare_cv_schemelib_VICARE_FFI" = no],
   [AC_MSG_ERROR([wrong Vicare FFI library version],1)])
 
