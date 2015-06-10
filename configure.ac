@@ -46,7 +46,7 @@ AS_IF([test "$vicare_cv_schemelib_VICARE_FFI" = no],
 # The variable VFLAGS  is for user options selected on  the command line
 # of "configure" and "make", for example:
 #
-#    $ make VFLAGS="-g --print-loaded-libraries"
+#    $ make VFLAGS="-g --option print-loaded-libraries"
 #
 AS_VAR_SET(AX_VFLAGS,["-O2 --verbose"])
 AS_VAR_SET_IF(VFLAGS,,[AS_VAR_SET(VFLAGS)])
