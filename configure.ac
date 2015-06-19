@@ -27,8 +27,8 @@ AC_DEFINE([_GNU_SOURCE],[1],[enable everything GNU])
 
 VICARE_SCHEME
 VICARE_CHECK_LIBRARY([VICARE],
-  [(vicare (or (0 4 2015 5 (>= 26))
-               (0 4 2015 (>= 6))
+  [(vicare (or (0 4 2015 6 (>= 18))
+               (0 4 2015 (>= 7))
                (0 4 (>= 2016))))])
 AS_IF([test "$vicare_cv_schemelib_VICARE" = no],
   [AC_MSG_ERROR([wrong Vicare version],1)])
