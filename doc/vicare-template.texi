@@ -33,7 +33,7 @@
 
 @c To be used as @value{COPYRIGHT_YEARS} whenever we need to include the
 @c list of copyright years.
-@set COPYRIGHT_YEARS            2013, 2014, 2015
+@set COPYRIGHT_YEARS            2013-2015
 
 @c ------------------------------------------------------------
 
@@ -42,11 +42,11 @@
 @set FOREIGN_URL                @url{http:/@//@/www.gnu.org/@/software/@/template/@/}
 @set FOREIGN_SCHEME_LIB         @library{vicare category template}
 @set NAUSICAA_SCHEME_LIB        @library{nausicaa category template}
-@set GITHUB_URL                 @url{http://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
-@set BITBUCKET_URL              @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}}
-@set DOWNLOAD_URL               @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}/downloads}
-@set DOCUMENTATION_URL          @url{http://marcomaggi.github.io/docs/@value{PACKAGE_NICKNAME}.html}
-@set VICARE_HOMEPAGE_URL        @url{http://marcomaggi.github.io/vicare.html}
+@set GITHUB_URL                 @url{http:/@//@/github.com/@/marcomaggi/@/@value{PACKAGE_NICKNAME}}
+@set BITBUCKET_URL              @url{https:/@//@/bitbucket.org/@/marcomaggi/@/@value{PACKAGE_NICKNAME}}
+@set DOWNLOAD_URL               @url{https:/@//@/bitbucket.org/@/marcomaggi/@/@value{PACKAGE_NICKNAME}/@/downloads}
+@set DOCUMENTATION_URL          @url{http:/@//@/marcomaggi.github.io/@/docs/@/@value{PACKAGE_NICKNAME}.html}
+@set VICARE_HOMEPAGE_URL        @url{http:/@//@/marcomaggi.github.io/@/vicare.html}
 
 @macro templateref{NODE, TITLE}
 @xref{\NODE\,\TITLE\,\TITLE\,template}
@@ -400,28 +400,6 @@ as follows:
 @end example
 @end defun
 
-@c ------------------------------------------------------------
-
-@subsubheading Arguments validation
-
-The following bindings are meant to be used with the facilities of the
-library @library{vicare arguments validation}.
-
-
-@deffn {Validation Clause} template-alpha @var{obj}
-@deffnx {Validation Clause} false-or-template-alpha @var{obj}
-Succeed if @var{obj} satisfies the predicate @func{template-alpha?}; the
-second clause also accepts @false{}.
-@end deffn
-
-
-@deffn {Validation Clause} template-alpha/alive @var{obj}
-@deffnx {Validation Clause} false-or-template-alpha/alive @var{obj}
-Succeed if @var{obj} satisfies the predicate @func{template-alpha?/alive};
-the second clause also accepts @false{}.
-@end deffn
-
-
 @c page
 @node plain alpha ops
 @subsection Operating on alpha objects
@@ -606,25 +584,6 @@ follows:
                 eq?)
 @end example
 @end defmethod
-
-@c ------------------------------------------------------------
-
-@subsubheading Arguments validation
-
-
-The following bindings are meant to be used with the facilities of the
-library @library{vicare arguments validation}.
-
-
-@deffn {Validation Clause} @aclass{template-alpha} @var{obj}
-Succeed if @var{obj} is an instance of @class{template-alpha}.
-@end deffn
-
-
-@deffn {Validation Clause} @aclass{template-alpha}/alive @var{obj}
-Succeed if @var{obj} is an instance of @class{template-alpha} and the
-method @func{alive?} would return @true{} if applied to it.
-@end deffn
 
 @c page
 @node nau alpha methods
