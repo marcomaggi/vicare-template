@@ -30,7 +30,6 @@
   (options tagged-language)
   (import (nausicaa)
     (nausicaa category template)
-    (vicare arguments validation)
     (vicare checks))
 
 (check-set-mode! 'report-failed)
@@ -161,40 +160,7 @@
 	      (S getprop 'hello)))
     => '(salut ohayo))
 
-;;; --------------------------------------------------------------------
-;;; arguments validation
-
-  (check-for-true
-   (let (({S <template-alpha>} (<template-alpha> ())))
-     (with-arguments-validation (who)
-	 ((<template-alpha>	S))
-       #t)))
-
-  (check-for-true
-   (let (({S <template-alpha>} (<template-alpha> ())))
-     (S finalise)
-     (with-arguments-validation (who)
-	 ((<template-alpha>	S))
-       #t)))
-
-  (check-for-true
-   (let (({S <template-alpha>} (<template-alpha> ())))
-     (with-arguments-validation (who)
-	 ((<template-alpha>/alive	S))
-       #t)))
-
-;;;
-
-  (let (({S <template-alpha>} (<template-alpha> ())))
-    (check-for-procedure-argument-violation
-	(begin
-	  (S finalise)
-	  (with-arguments-validation (who)
-	      ((<template-alpha>/alive	S))
-	    #t))
-      => (list who (list S))))
-
-  (collect))
+  (collect 'fullest))
 
 
 ;;;; done

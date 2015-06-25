@@ -8,7 +8,7 @@
 ;;;
 ;;;
 ;;;
-;;;Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
+;;;Copyright (C) 2013, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 ;;;
 ;;;This program is free software:  you can redistribute it and/or modify
 ;;;it under the terms of the  GNU General Public License as published by
@@ -30,7 +30,6 @@
   (vicare category template)
   (vicare category template constants)
 ;;;  (prefix (vicare ffi) ffi.)
-  (vicare arguments validation)
   (vicare checks))
 
 (check-set-mode! 'report-failed)
@@ -155,54 +154,7 @@
 	      (template-alpha-getprop S 'hello)))
     => '(salut ohayo))
 
-;;; --------------------------------------------------------------------
-;;; arguments validation
-
-  (check-for-true
-   (let ((S (template-alpha-initialise)))
-     (with-arguments-validation (who)
-	 ((template-alpha	S))
-       #t)))
-
-  (check-for-true
-   (let ((S (template-alpha-initialise)))
-     (template-alpha-finalise S)
-     (with-arguments-validation (who)
-	 ((template-alpha	S))
-       #t)))
-
-  (check-for-true
-   (let ((S (template-alpha-initialise)))
-     (with-arguments-validation (who)
-	 ((template-alpha/alive	S))
-       #t)))
-
-;;;
-
-  (check-for-procedure-argument-violation
-      (let ((S 123))
-	(with-arguments-validation (who)
-	    ((template-alpha	S))
-	  #t))
-    => (list who '(123)))
-
-  (check-for-procedure-argument-violation
-      (let ((S 123))
-	(with-arguments-validation (who)
-	    ((template-alpha/alive	S))
-	  #t))
-    => (list who '(123)))
-
-  (let ((S (template-alpha-initialise)))
-    (check-for-procedure-argument-violation
-	(begin
-	  (template-alpha-finalise S)
-	  (with-arguments-validation (who)
-	      ((template-alpha/alive	S))
-	    #t))
-      => (list who (list S))))
-
-  (collect))
+  (collect 'fullest))
 
 
 ;;;; done

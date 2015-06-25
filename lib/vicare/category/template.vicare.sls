@@ -46,11 +46,6 @@
     template-alpha-remprop		template-alpha-property-list
     template-alpha-hash
 
-    template-alpha.vicare-arguments-validation
-    template-alpha/alive.vicare-arguments-validation
-    false-or-template-alpha.vicare-arguments-validation
-    false-or-template-alpha/alive.vicare-arguments-validation
-
 ;;; --------------------------------------------------------------------
 ;;; still to be implemented
 
@@ -65,7 +60,6 @@
 			    (0 4 (>= 2016))))
 	    ffi.)
     (prefix (vicare ffi foreign-pointer-wrapper) ffi.)
-    (vicare arguments validation)
     #;(vicare arguments general-c-buffers)
     #;(vicare language-extensions syntaxes)
     #;(prefix (vicare platform words) words.))
@@ -73,9 +67,6 @@
 
 ;;;; arguments validation
 
-#;(define-argument-validation (fixnum who obj)
-  (fixnum? obj)
-  (assertion-violation who "expected fixnum as argument" obj))
 
 
 ;;;; version functions
@@ -114,19 +105,15 @@
 
 ;;; --------------------------------------------------------------------
 
-(define (template-alpha-initialise)
-  (define who 'template-alpha-initialise)
+(define* (template-alpha-initialise)
   (cond ((capi.template-alpha-initialise)
 	 => (lambda (rv)
 	      (make-template-alpha/owner rv)))
 	(else
-	 (error who "unable to create alpha object"))))
+	 (error __who__ "unable to create alpha object"))))
 
-(define (template-alpha-finalise alpha)
-  (define who 'template-alpha-finalise)
-  (with-arguments-validation (who)
-      ((template-alpha		alpha))
-    ($template-alpha-finalise alpha)))
+(define* (template-alpha-finalise {alpha template-alpha?})
+  ($template-alpha-finalise alpha))
 
 
 ;;;; data structures: beta
@@ -138,7 +125,7 @@
 
 ;;;; done
 
-)
+#| end of library |# )
 
 ;;; end of file
 ;; Local Variables:

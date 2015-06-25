@@ -7,7 +7,7 @@
 
 	Core functions.
 
-  Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2013, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -43,8 +43,8 @@ typedef struct template_alpha_tag_t {
 } template_alpha_t;
 
 
-ikptr
-ikrt_template_alpha_initialise (ikpcb * pcb)
+ikptr_t
+ikrt_template_alpha_initialise (ikpcb_t * pcb)
 {
 #ifdef HAVE_TEMPLATE_ALPHA_INITIALISE
   template_alpha_t *	rv;
@@ -58,11 +58,11 @@ ikrt_template_alpha_initialise (ikpcb * pcb)
   feature_failure(__func__);
 #endif
 }
-ikptr
-ikrt_template_alpha_finalise (ikptr s_alpha, ikpcb * pcb)
+ikptr_t
+ikrt_template_alpha_finalise (ikptr_t s_alpha, ikpcb_t * pcb)
 {
 #ifdef HAVE_TEMPLATE_ALPHA_FINALISE
-  ikptr		s_pointer	= IK_TEMPLATE_ALPHA_POINTER(s_alpha);
+  ikptr_t		s_pointer	= IK_TEMPLATE_ALPHA_POINTER(s_alpha);
   if (ik_is_pointer(s_pointer)) {
     template_alpha_t *	alpha	= IK_POINTER_DATA_VOIDP(s_pointer);
     int		owner		= IK_BOOLEAN_TO_INT(IK_TEMPLATE_ALPHA_OWNER(s_alpha));
@@ -85,8 +85,8 @@ ikrt_template_alpha_finalise (ikptr s_alpha, ikpcb * pcb)
  ** ----------------------------------------------------------------- */
 
 #if 0
-ikptr
-ikrt_template_doit (ikpcb * pcb)
+ikptr_t
+ikrt_template_doit (ikpcb_t * pcb)
 {
 #ifdef HAVE_TEMPLATE_DOIT
   return IK_VOID;

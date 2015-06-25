@@ -7,7 +7,7 @@
 
 	Version functions.
 
-  Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
+  Copyright (C) 2013, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 
   This program is  free software: you can redistribute  it and/or modify
   it under the  terms of the GNU General Public  License as published by
@@ -35,23 +35,23 @@
  ** Version functions.
  ** ----------------------------------------------------------------- */
 
-ikptr
+ikptr_t
 ikrt_template_version_interface_current (void)
 {
   return IK_FIX(vicare_template_VERSION_INTERFACE_CURRENT);
 }
-ikptr
+ikptr_t
 ikrt_template_version_interface_revision (void)
 {
   return IK_FIX(vicare_template_VERSION_INTERFACE_REVISION);
 }
-ikptr
+ikptr_t
 ikrt_template_version_interface_age (void)
 {
   return IK_FIX(vicare_template_VERSION_INTERFACE_AGE);
 }
-ikptr
-ikrt_template_version (ikpcb * pcb)
+ikptr_t
+ikrt_template_version (ikpcb_t * pcb)
 {
   return ika_bytevector_from_cstring(pcb, vicare_template_VERSION_INTERFACE_STRING);
 }

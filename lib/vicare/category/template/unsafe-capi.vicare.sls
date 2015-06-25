@@ -8,7 +8,7 @@
 ;;;
 ;;;
 ;;;
-;;;Copyright (C) 2013 Marco Maggi <marco.maggi-ipsu@poste.it>
+;;;Copyright (C) 2013, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
 ;;;
 ;;;This program is free software:  you can redistribute it and/or modify
 ;;;it under the terms of the  GNU General Public License as published by
@@ -48,36 +48,36 @@
 
 ;;;; version functions
 
-(define-inline (vicare-template-version-interface-current)
+(define-syntax-rule (vicare-template-version-interface-current)
   (foreign-call "ikrt_template_version_interface_current"))
 
-(define-inline (vicare-template-version-interface-revision)
+(define-syntax-rule (vicare-template-version-interface-revision)
   (foreign-call "ikrt_template_version_interface_revision"))
 
-(define-inline (vicare-template-version-interface-age)
+(define-syntax-rule (vicare-template-version-interface-age)
   (foreign-call "ikrt_template_version_interface_age"))
 
-(define-inline (vicare-template-version)
+(define-syntax-rule (vicare-template-version)
   (foreign-call "ikrt_template_version"))
 
 
 ;;;; template alpha struct
 
-(define-inline (template-alpha-initialise)
+(define-syntax-rule (template-alpha-initialise)
   (foreign-call "ikrt_template_alpha_initialise"))
 
-(define-inline (template-alpha-finalise alpha)
+(define-syntax-rule (template-alpha-finalise alpha)
   (foreign-call "ikrt_template_alpha_finalise" alpha))
 
 
 ;;;; still to be implemented
 
-#;(define-inline (vicare-template)
+#;(define-syntax-rule (vicare-template)
   (foreign-call "ikrt_template"))
 
 
 ;;;; done
 
-)
+#| end of library |# )
 
 ;;; end of file
