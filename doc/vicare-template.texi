@@ -177,11 +177,12 @@ tested @value{FOREIGN_PACKAGE} version @value{FOREIGN_VERSION}; the
 @center @value{FOREIGN_URL}
 
 The package installs a C language library implementing wrapper C
-functions for the C language @value{FOREIGN_PACKAGE} library; on top of this, the
-Scheme library @library{vicare category template} exports one binding
-for each @value{FOREIGN_PACKAGE} public function; additionally the library
-@library{vicare category template constants} exports one binding for
-each constant value defined in the C language header @file{template.h}.
+functions for the C language @value{FOREIGN_PACKAGE} library; on top of
+this, the Scheme library @value{FOREIGN_SCHEME_LIB} exports one binding
+for each @value{FOREIGN_PACKAGE} public function; additionally the
+library @library{vicare category template constants} exports one binding
+for each constant value defined in the C language header
+@file{template.h}.
 
 The following Scheme libraries are installed:
 
