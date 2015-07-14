@@ -14,6 +14,7 @@ AM_INIT_AUTOMAKE([foreign subdir-objects dist-xz no-dist-gzip])
 AM_MAINTAINER_MODE
 
 AC_PROG_CC
+AC_PROG_CC_C99
 AC_PROG_CC_C_O
 AM_PROG_AR
 AC_PROG_INSTALL
