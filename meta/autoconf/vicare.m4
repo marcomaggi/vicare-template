@@ -47,36 +47,6 @@ AC_DEFUN([VICARE_OPTION_DEBUGGING_MODE],
      [VICARE_DEBUG=no
       AC_MSG_RESULT([no])])])
 
-dnl $1 - "yes", "no" or "check"
-dnl
-dnl Notice that the AM_CONDITIONAL definition for WANT_NAUSICAA
-dnl must go in "configure.ac", else Automake will not see it.
-AC_DEFUN([VICARE_OPTION_NAUSICAA],
-  [AC_ARG_WITH([nausicaa],
-     AS_HELP_STRING([--with-nausicaa],[install Nausicaa libraries (default is $1)]),
-     [true],[with_nausicaa=$1])
-   vicare_with_nausicaa=no
-   if test x$with_nausicaa = xyes || test x$with_nausicaa = xcheck
-   then
-     VICARE_CHECK_LIBRARY([NAUSICAA],[(nausicaa)],
-       [vicare_have_nausicaa=yes],[vicare_have_nausicaa=no])
-     if test "$vicare_have_nausicaa" = yes || test "$vicare_cv_schemelib_NAUSICAA" = yes
-     then
-       # Nausicaa library was found: success!
-       AC_MSG_NOTICE([Nausicaa support enabled])
-       vicare_with_nausicaa=yes
-     elif test "$with_nausicaa" = yes
-     then
-       # The user  requested Nausicaa support  or die, but the  library was
-       # not found.
-       AC_MSG_ERROR([Nausicaa cannot be found])
-     else
-       # The  user requested  a check  for optional  Nausicaa  support, but
-       # the library was not found.
-       AC_MSG_WARN([Nausicaa not found -- support disabled])
-     fi
-   fi])
-
 dnl page
 dnl C language helper library preparations.
 

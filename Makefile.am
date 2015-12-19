@@ -77,8 +77,7 @@ lib/vicare/category/template/features.vicare.sls : features
 EXTRA_DIST += \
 	lib/libraries.scm			\
 	$(scriptsdir)/build-makefile-rules.sps	\
-	$(scriptsdir)/compile-all.sps		\
-	$(scriptsdir)/compile-nausicaa.sps
+	$(scriptsdir)/compile-all.sps
 
 VICARE_BUILD_DEPS	= \
 	$(VICARE_COMPILE_RUN) \
@@ -111,20 +110,12 @@ clean-fasl:
 VICARE_TEMPLATE_PLAIN_TESTS		= \
 	tests/test-vicare-template.sps
 
-VICARE_TEMPLATE_NAU_TESTS		= \
-	tests/test-nausicaa-template.sps
-
 TESTS	= $(VICARE_TEMPLATE_PLAIN_TESTS)
-if WANT_NAUSICAA
-TESTS	+= $(VICARE_TEMPLATE_NAU_TESTS)
-endif
 
 EXTRA_DIST += \
 	$(VICARE_TEMPLATE_PLAIN_TESTS)		\
-	$(VICARE_TEMPLATE_NAU_TESTS)		\
 	\
-	tests/demo-for-plain-documentation.sps	\
-	tests/demo-for-nausicaa-documentation.sps
+	tests/demo-for-plain-documentation.sps
 
 VICARE_SELECTED_TESTS		= $(testdir)/test-*$(file)*.sps
 VICARE_SELECTED_DEMOS		= $(testdir)/demo-*$(file)*.sps

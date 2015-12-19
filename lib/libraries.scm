@@ -4,8 +4,7 @@
 ;;in the sources search path.
 
 (define-constant INCLUDE-LIBRARY-BUILD-HIERARCHIES
-  '((vicare category template)
-    (nausicaa category template)))
+  '((vicare category template)))
 
 (define-constant INCLUDE-LIBRARY-DEPENDENCIES-HIERARCHIES
   '())
@@ -44,9 +43,7 @@
      (vicare category template)
      (vicare category template unsafe-capi)
      (vicare category template constants)
-     (vicare category template features))
-    ((WANT_NAUSICAA)
-     (nausicaa category template))))
+     (vicare category template features))))
 
 ;;; end of file
 ;; Local Variables:

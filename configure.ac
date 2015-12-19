@@ -2,7 +2,7 @@ dnl @configure_input@
 dnl
 
 AC_PREREQ([2.68])
-AC_INIT([Vicare/Template],[0.4d0],[marco.maggi-ipsu@poste.it],
+AC_INIT([Vicare/Template],[0.4d1],[marco.maggi-ipsu@poste.it],
   [vicare-template],[http://marcomaggi.github.io/vicare.html])
 AC_CONFIG_SRCDIR([src])
 AC_CONFIG_MACRO_DIR([meta/autotools])
@@ -53,8 +53,6 @@ AS_VAR_SET(AX_VFLAGS,["-O2 --verbose"])
 AS_VAR_SET_IF(VFLAGS,,[AS_VAR_SET(VFLAGS)])
 
 VICARE_OPTION_DEBUGGING_MODE
-VICARE_OPTION_NAUSICAA([check])
-AM_CONDITIONAL([WANT_NAUSICAA],[test x$vicare_with_nausicaa = xyes])
 
 AM_CONDITIONAL([WANT_VICARE_DEBUG],[test x$VICARE_DEBUG = xyes])
 AM_COND_IF([WANT_VICARE_DEBUG],[AS_VAR_SET(VFLAGS,"$VFLAGS -g")])
