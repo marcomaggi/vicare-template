@@ -8,7 +8,7 @@
 ;;;
 ;;;
 ;;;
-;;;Copyright (C) 2013, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
+;;;Copyright (C) 2013, 2015, 2017 Marco Maggi <marco.maggi-ipsu@poste.it>
 ;;;
 ;;;This program is free software:  you can redistribute it and/or modify
 ;;;it under the terms of the  GNU General Public License as published by
@@ -54,12 +54,12 @@
 		      (0 4 2015 (>= 6))
 		      (0 4 (>= 2016))))
     (vicare category template constants)
-    (prefix (vicare category template unsafe-capi) capi.)
+    (prefix (vicare category template unsafe-capi) capi::)
     #;(prefix (vicare ffi (or (0 4 2015 5 (>= 27))
 			    (0 4 2015 (>= 6))
 			    (0 4 (>= 2016))))
-	    ffi.)
-    (prefix (vicare ffi foreign-pointer-wrapper) ffi.)
+	    ffi::)
+    #;(prefix (vicare ffi foreign-pointer-wrapper) ffi::)
     #;(vicare arguments general-c-buffers)
     #;(vicare language-extensions syntaxes)
     #;(prefix (vicare platform words) words.))
@@ -72,25 +72,25 @@
 ;;;; version functions
 
 (define (vicare-template-version-interface-current)
-  (capi.vicare-template-version-interface-current))
+  (capi::vicare-template-version-interface-current))
 
 (define (vicare-template-version-interface-revision)
-  (capi.vicare-template-version-interface-revision))
+  (capi::vicare-template-version-interface-revision))
 
 (define (vicare-template-version-interface-age)
-  (capi.vicare-template-version-interface-age))
+  (capi::vicare-template-version-interface-age))
 
 (define (vicare-template-version)
-  (ascii->string (capi.vicare-template-version)))
+  (ascii->string (capi::vicare-template-version)))
 
 
 ;;;; data structures: alpha
 
-(ffi.define-foreign-pointer-wrapper template-alpha
-  (ffi.foreign-destructor capi.template-alpha-finalise)
-  #;(ffi.foreign-destructor #f)
-  (ffi.collector-struct-type #f)
-  (ffi.collected-struct-type template-beta))
+(ffi::define-foreign-pointer-wrapper template-alpha
+  (ffi::foreign-destructor capi::template-alpha-finalise)
+  #;(ffi::foreign-destructor #f)
+  (ffi::collector-struct-type #f)
+  (ffi::collected-struct-type template-beta))
 
 (module ()
   (set-rtd-printer! (type-descriptor template-alpha)
@@ -106,7 +106,7 @@
 ;;; --------------------------------------------------------------------
 
 (define* (template-alpha-initialise)
-  (cond ((capi.template-alpha-initialise)
+  (cond ((capi::template-alpha-initialise)
 	 => (lambda (rv)
 	      (make-template-alpha/owner rv)))
 	(else
@@ -118,9 +118,9 @@
 
 ;;;; data structures: beta
 
-(ffi.define-foreign-pointer-wrapper template-beta
-  (ffi.foreign-destructor #f)
-  (ffi.collector-struct-type template-alpha))
+(ffi::define-foreign-pointer-wrapper template-beta
+  (ffi::foreign-destructor #f)
+  (ffi::collector-struct-type template-alpha))
 
 
 ;;;; done
@@ -129,5 +129,5 @@
 
 ;;; end of file
 ;; Local Variables:
-;; eval: (put 'ffi.define-foreign-pointer-wrapper 'scheme-indent-function 1)
+;; eval: (put 'ffi::define-foreign-pointer-wrapper 'scheme-indent-function 1)
 ;; End:
