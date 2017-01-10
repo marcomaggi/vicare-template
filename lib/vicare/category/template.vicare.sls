@@ -53,16 +53,17 @@
   (import (vicare (or (0 4 2015 5 (>= 26))
 		      (0 4 2015 (>= 6))
 		      (0 4 (>= 2016))))
+    (prefix (vicare system structs) structs::)
     (vicare category template constants)
     (prefix (vicare category template unsafe-capi) capi::)
     #;(prefix (vicare ffi (or (0 4 2015 5 (>= 27))
 			    (0 4 2015 (>= 6))
 			    (0 4 (>= 2016))))
 	    ffi::)
-    #;(prefix (vicare ffi foreign-pointer-wrapper) ffi::)
+    (prefix (vicare ffi foreign-pointer-wrapper) ffi::)
     #;(vicare arguments general-c-buffers)
     #;(vicare language-extensions syntaxes)
-    #;(prefix (vicare platform words) words.))
+    #;(prefix (vicare platform words) words::))
 
 
 ;;;; arguments validation
@@ -93,11 +94,11 @@
   (ffi::collected-struct-type template-beta))
 
 (module ()
-  (set-rtd-printer! (type-descriptor template-alpha)
+  (structs::set-struct-type-printer! (type-descriptor template-alpha)
     (lambda (S port sub-printer)
-      (define-inline (%display thing)
+      (define-syntax-rule (%display thing)
 	(display thing port))
-      (define-inline (%write thing)
+      (define-syntax-rule (%write thing)
 	(write thing port))
       (%display "#[template-alpha")
       (%display " pointer=")	(%display ($template-alpha-pointer  S))
@@ -129,5 +130,6 @@
 
 ;;; end of file
 ;; Local Variables:
-;; eval: (put 'ffi::define-foreign-pointer-wrapper 'scheme-indent-function 1)
+;; eval: (put 'ffi::define-foreign-pointer-wrapper	'scheme-indent-function 1)
+;; eval: (put 'structs::set-struct-type-printer!	'scheme-indent-function 1)
 ;; End:

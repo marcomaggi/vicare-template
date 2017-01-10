@@ -8,7 +8,7 @@
 ;;;
 ;;;
 ;;;
-;;;Copyright (C) 2013, 2015 Marco Maggi <marco.maggi-ipsu@poste.it>
+;;;Copyright (C) 2013, 2015, 2017 Marco Maggi <marco.maggi-ipsu@poste.it>
 ;;;
 ;;;This program is free software:  you can redistribute it and/or modify
 ;;;it under the terms of the  GNU General Public License as published by
@@ -29,7 +29,9 @@
 (import (vicare)
   (vicare category template)
   (vicare category template constants)
-;;;  (prefix (vicare ffi) ffi.)
+;;;  (prefix (vicare ffi) ffi::)
+  (prefix (vicare system structs)
+	  structs::)
   (vicare checks))
 
 (check-set-mode! 'report-failed)
@@ -61,14 +63,13 @@
   #t)
 
 
-(parametrise ((check-test-name		'struct-alpha)
-	      (struct-guardian-logger	#t))
+(parametrise ((check-test-name			'struct-alpha)
+	      (structs::struct-guardian-logger	#t))
 
   (define who 'test)
 
   (check	;this will be garbage collected
       (let ((voice (template-alpha-initialise)))
-;;;(debug-print voice)
 	(template-alpha? voice))
     => #t)
 
