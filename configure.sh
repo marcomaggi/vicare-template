@@ -16,10 +16,11 @@ fi
     --cache-file=../config.cache                \
     --prefix="${prefix}"                        \
     --libdir="${libdir}"			\
-    --enable-debug                              \
     --enable-time-tests				\
     CFLAGS='-O3'				\
     VFLAGS='-O3'				\
     "$@"
+
+#    --enable-debug
 
 ### end of file

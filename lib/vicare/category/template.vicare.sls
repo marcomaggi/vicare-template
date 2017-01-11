@@ -27,6 +27,7 @@
 
 #!vicare
 (library (vicare category template)
+  (options typed-language)
   (foreign-library "vicare-template")
   (export
 
