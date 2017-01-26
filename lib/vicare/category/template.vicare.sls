@@ -51,9 +51,7 @@
 ;;; still to be implemented
 
     )
-  (import (vicare (or (0 4 2015 5 (>= 26))
-		      (0 4 2015 (>= 6))
-		      (0 4 (>= 2016))))
+  (import (vicare (0 4 2017 1 (>= 10)))
     (prefix (vicare system structs) structs::)
     (vicare category template constants)
     (prefix (vicare category template unsafe-capi) capi::)
