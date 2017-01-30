@@ -76,8 +76,7 @@ lib/vicare/category/template/features.vicare.sls : features
 
 EXTRA_DIST += \
 	lib/libraries.scm			\
-	$(scriptsdir)/build-makefile-rules.sps	\
-	$(scriptsdir)/compile-all.sps
+	$(scriptsdir)/build-makefile-rules.sps
 
 VICARE_BUILD_DEPS	= \
 	$(VICARE_COMPILE_RUN) \
